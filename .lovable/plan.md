@@ -27,7 +27,7 @@ Plan: Thư viện ảnh + các trang khu vực chi tiết (Nhà hàng, Giải tr
 | Mục đích | Tổng quan, duyệt nhanh | Giới thiệu chi tiết, storytelling |
 | Layout | Grid, lọc, lightbox | Hero + section + ảnh minh họa |
 | Dữ liệu | Mảng ảnh chung có category | Mảng ảnh riêng cho từng trang |
-| Đường dẫn | `/thu-vien` | `/nha-hang`, `/giai-tri`, `/phong`, ... |
+| Đường dẫn | `/thu-vien` | `/dining`, `/entertainment`, `/cabins`, ... |
 | Tương tác | Lightbox, filter | Scroll, hover, có thể có slider |
 | SEO | Một trang tổng | Nhiều trang, mỗi trang meta riêng |
 
@@ -44,7 +44,7 @@ Plan: Thư viện ảnh + các trang khu vực chi tiết (Nhà hàng, Giải tr
 - Header có dropdown menu khu vực dẫn đến các trang riêng.
 
 ### Bước 3: Xây các trang khu vực
-- Tạo các route: `/nha-hang`, `/giai-tri`, `/phong`, `/khu-vuc-chung`, `/ngoai-that` (hoặc tên tiếng Anh nếu muốn).
+- Tạo các route: `/dining`, `/entertainment`, `/cabins`, `/public-spaces`, `/exterior` (hoặc tên tiếng Anh nếu muốn).
 - Mỗi route import các `.asset.json` riêng, không phụ thuộc vào mảng thư viện.
 - Nội dung: hero image, tiêu đề, mô tả 2-3 đoạn, 3-6 ảnh minh họa, CTA về form báo giá.
 - head() riêng cho mỗi trang với title, description, og:image phù hợp.
@@ -63,7 +63,7 @@ Plan: Thư viện ảnh + các trang khu vực chi tiết (Nhà hàng, Giải tr
 
 ## Phạm vi lần này (đề xuất)
 - Hoàn thiện bước 1 và 2: tách ảnh, upload CDN, xây thư viện `/thu-vien`.
-- Ưu tiên cao nhất: xây trang **Phòng ở** (`/phong`) làm trang khu vực mẫu, vì đây là khu vực khách quan tâm nhất khi quyết định đặt du thuyền.
+- Ưu tiên cao nhất: xây trang **Phòng ở** (`/cabins`) làm trang khu vực mẫu, vì đây là khu vực khách quan tâm nhất khi quyết định đặt du thuyền.
 - Các trang khu vực còn lại (Nhà hàng, Giải trí, Khu vực chung, Ngoại thất) làm tiếp sau khi bạn duyệt mẫu Phòng ở.
 
 ## Trang Phòng ở làm kỹ hơn các trang khác
@@ -74,7 +74,7 @@ Plan: Thư viện ảnh + các trang khu vực chi tiết (Nhà hàng, Giải tr
 - og:image của trang là ảnh phòng đẹp nhất; nếu sau này tách trang chi tiết cho từng hạng phòng thì cấu trúc dữ liệu này dùng lại được ngay.
 
 ## Câu hỏi cần quyết định
-- Đường dẫn trang khu vực dùng tiếng Việt (`/phong`, `/nha-hang`) hay tiếng Anh (`/cabins`, `/dining`)?
+- Đường dẫn trang khu vực dùng tiếng Việt (`/cabins`, `/dining`) hay tiếng Anh (`/cabins`, `/dining`)?
 - Du thuyền có bao nhiêu hạng phòng và tên gọi từng hạng là gì? Nếu chưa chốt, tôi sẽ tạm nhóm theo ảnh phối cảnh và bạn chỉnh lại sau.
 - Có cần ghi chú "Hình ảnh phối cảnh" trên ảnh/đầu trang hay không?
 
