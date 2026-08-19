@@ -14,7 +14,7 @@ interface HeaderProps {
   lang: Lang;
   setLang: (lang: Lang) => void;
   t: {
-    nav: { about: string; cabins: string; gallery: string; services: string; itineraries: string; offers: string; careers: string; quote: string; book: string; contact: string };
+    nav: { about: string; cabins: string; gallery: string; services: string; itineraries: string; offers: string; careers: string; quote: string; book: string; contact: string; more: string };
   };
 }
 
