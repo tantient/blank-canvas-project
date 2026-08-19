@@ -166,8 +166,7 @@ export function CabinsPage() {
             <p className="eyebrow mb-5 text-zenova-gold">{vi ? "BẢNG SO SÁNH SUITE" : "SUITE COMPARISON"}</p>
 
             {/* Desktop / tablet: table keeps the requested column structure */}
-            <div className="relative hidden overflow-x-auto rounded-sm border border-zenova-ink/10 sm:block">
-              <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-6 bg-gradient-to-l from-zenova-ink/8 to-transparent sm:w-10" />
+            <div className="hidden overflow-x-auto rounded-sm border border-zenova-ink/10 sm:block">
               <table className="w-full min-w-[640px] border-collapse text-left text-sm">
                 <thead>
                   <tr className="bg-zenova-ink/[0.04] text-[10px] uppercase tracking-[0.2em] text-zenova-stone/70">
