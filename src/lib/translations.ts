@@ -4,10 +4,13 @@ const translations = {
   vi: {
     nav: {
       about: "Giới thiệu",
-      gallery: "Thư viện ảnh",
       cabins: "Phòng nghỉ",
       services: "Dịch vụ",
+      gallery: "Thư viện ảnh",
+      itineraries: "Hải trình",
+      offers: "Ưu đãi",
       quote: "Nhận báo giá",
+      book: "Đặt phòng",
     },
     hero: {
       tagline: "Du thuyền 6 sao tại vịnh Hạ Long",
@@ -27,6 +30,16 @@ const translations = {
         { title: "Spa & wellness", desc: "Liệu trình chăm sóc toàn diện" },
         { title: "Dịch vụ 24/7", desc: "Quản gia riêng trên tàu" },
       ],
+      values: {
+        label: "GIÁ TRỊ CỐT LÕI",
+        title: "Lấy khách làm trung tâm",
+        items: [
+          { title: "Yên tĩnh", desc: "Không gian và nhịp điệu được thiết kế để bạn thực sự thư giãn." },
+          { title: "Chu đáo", desc: "Mỗi yêu cầu nhỏ đều được ghi nhận và đáp ứng kịp thời." },
+          { title: "Bản địa", desc: "Ẩm thực, trị liệu và trải nghiệm gắn liền với văn hóa vịnh." },
+          { title: "Bền vững", desc: "Vận hành thân thiện với hệ sinh thái biển đảo." },
+        ],
+      },
     },
     gallery: {
       label: "KHÔNG GIAN",
@@ -46,6 +59,23 @@ const translations = {
       submit: "Gửi yêu cầu",
       success: "Đã gửi yêu cầu! Zenova sẽ liên hệ bạn sớm.",
     },
+    itineraries: {
+      label: "HẢI TRÌNH",
+      title: "Chọn hành trình của bạn",
+      subtitle: "Từ chuyến đi ngắn ngày đến hành trình khám phá sâu hơn giữa vịnh Hạ Long – Lan Hạ.",
+      duration: "Thời lượng",
+      includes: "Bao gồm",
+      excludes: "Không bao gồm",
+      highlights: "Điểm nhấn",
+      cta: "Tư vấn hải trình",
+    },
+    offers: {
+      label: "ƯU ĐÃI",
+      title: "Các gói đặc biệt đang mở",
+      subtitle: "Những ưu đãi được cập nhật theo mùa, giúp bạn tận hưởng Zenova với giá trị tốt nhất.",
+      terms: "Điều kiện",
+      cta: "Nhận ưu đãi",
+    },
     footer: {
       rights: "© 2026 Zenova Cruise. All rights reserved.",
       tagline: "HA LONG BAY · LAN HA BAY",
@@ -55,10 +85,13 @@ const translations = {
   en: {
     nav: {
       about: "About",
-      gallery: "Gallery",
       cabins: "Cabins",
       services: "Services",
+      gallery: "Gallery",
+      itineraries: "Itineraries",
+      offers: "Offers",
       quote: "Get a quote",
+      book: "Book now",
     },
     hero: {
       tagline: "Six-star cruise in Ha Long Bay",
@@ -78,6 +111,16 @@ const translations = {
         { title: "Spa & wellness", desc: "Holistic treatments" },
         { title: "24/7 service", desc: "Dedicated onboard butler" },
       ],
+      values: {
+        label: "CORE VALUES",
+        title: "Centered on our guests",
+        items: [
+          { title: "Quiet", desc: "Spaces and rhythms designed for genuine relaxation." },
+          { title: "Attentive", desc: "Every small request is noticed and handled promptly." },
+          { title: "Local", desc: "Dining, therapies and experiences rooted in bay culture." },
+          { title: "Sustainable", desc: "Operations that respect the sea-and-island ecosystem." },
+        ],
+      },
     },
     gallery: {
       label: "SPACES",
@@ -96,6 +139,23 @@ const translations = {
       message: "Notes / Special requests",
       submit: "Send request",
       success: "Request sent! Zenova will contact you soon.",
+    },
+    itineraries: {
+      label: "ITINERARIES",
+      title: "Choose your voyage",
+      subtitle: "From a short escape to a deeper exploration of Ha Long Bay and Lan Ha Bay.",
+      duration: "Duration",
+      includes: "Includes",
+      excludes: "Excludes",
+      highlights: "Highlights",
+      cta: "Tailor an itinerary",
+    },
+    offers: {
+      label: "OFFERS",
+      title: "Special packages now open",
+      subtitle: "Seasonal offers updated regularly so you can experience Zenova at the best value.",
+      terms: "Terms",
+      cta: "Claim offer",
     },
     footer: {
       rights: "© 2026 Zenova Cruise. All rights reserved.",
