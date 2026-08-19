@@ -1,9 +1,12 @@
-Plan: Thư viện ảnh + các trang khu vực chi tiết (Nhà hàng, Giải trí, Phòng, ...)
+Plan: Thư viện ảnh + trang khu vực chi tiết + đa ngôn ngữ VI/EN (Zenova Cruise)
 
 ## Yêu cầu đã xác nhận
 - Bộ ảnh hiện tại đang tách từ PDF phối cảnh sẽ dùng làm ảnh minh họa tạm cho các trang khu vực.
 - Các trang Nhà hàng, Giải trí, Phòng... là dạng giới thiệu thuần, không cần tính năng đặt chỗ.
 - Sau này có ảnh thực tế chụp tại du thuyền sẽ thay thế dần ảnh phối cảnh.
+- Toàn bộ giao diện làm đa ngôn ngữ **VI/EN ngay từ đầu**, có **toggle chọn ngôn ngữ trên header**.
+- URL các trang dùng tiếng Anh; nội dung hiển thị song ngữ.
+
 
 ## Cách dùng ảnh hiện tại khác với thư viện như thế nào
 
