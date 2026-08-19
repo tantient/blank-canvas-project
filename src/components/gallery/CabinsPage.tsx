@@ -95,6 +95,14 @@ export function CabinsPage() {
                         </li>
                       ))}
                     </ul>
+
+                    <Link
+                      to="/cabins/$cabinId"
+                      params={{ cabinId: cabin.id }}
+                      className="mt-8 inline-block border-b border-zenova-gold pb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-zenova-ink hover:text-zenova-gold"
+                    >
+                      {vi ? "Xem chi tiết phòng" : "View cabin details"}
+                    </Link>
                   </Reveal>
                 </div>
 

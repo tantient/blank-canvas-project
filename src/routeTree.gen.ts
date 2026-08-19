@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as CabinsIndexRouteImport } from './routes/cabins.index'
+import { Route as CabinsCabinIdRouteImport } from './routes/cabins.$cabinId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,34 +29,43 @@ const CabinsIndexRoute = CabinsIndexRouteImport.update({
   path: '/cabins/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CabinsCabinIdRoute = CabinsCabinIdRouteImport.update({
+  id: '/cabins/$cabinId',
+  path: '/cabins/$cabinId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/gallery': typeof GalleryRoute
+  '/cabins/$cabinId': typeof CabinsCabinIdRoute
   '/cabins/': typeof CabinsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/gallery': typeof GalleryRoute
+  '/cabins/$cabinId': typeof CabinsCabinIdRoute
   '/cabins': typeof CabinsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/gallery': typeof GalleryRoute
+  '/cabins/$cabinId': typeof CabinsCabinIdRoute
   '/cabins/': typeof CabinsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/gallery' | '/cabins/'
+  fullPaths: '/' | '/gallery' | '/cabins/$cabinId' | '/cabins/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/gallery' | '/cabins'
-  id: '__root__' | '/' | '/gallery' | '/cabins/'
+  to: '/' | '/gallery' | '/cabins/$cabinId' | '/cabins'
+  id: '__root__' | '/' | '/gallery' | '/cabins/$cabinId' | '/cabins/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   GalleryRoute: typeof GalleryRoute
+  CabinsCabinIdRoute: typeof CabinsCabinIdRoute
   CabinsIndexRoute: typeof CabinsIndexRoute
 }
 
@@ -82,12 +92,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CabinsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cabins/$cabinId': {
+      id: '/cabins/$cabinId'
+      path: '/cabins/$cabinId'
+      fullPath: '/cabins/$cabinId'
+      preLoaderRoute: typeof CabinsCabinIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   GalleryRoute: GalleryRoute,
+  CabinsCabinIdRoute: CabinsCabinIdRoute,
   CabinsIndexRoute: CabinsIndexRoute,
 }
 export const routeTree = rootRouteImport
