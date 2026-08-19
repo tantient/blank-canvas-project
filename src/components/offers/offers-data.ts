@@ -90,13 +90,13 @@ export const offers: Offer[] = [
       "Designed for couples: cabin decoration, private dinner, couple's massage and welcome champagne.",
     hero: imgDeck.url,
     termsVi: [
-      "Áp dụng cho Zenova Suite hoặc Deluxe Bay View",
+      "Áp dụng cho Owner's Suite hoặc Grand Suite",
       "Tối thiểu 2 ngày 1 đêm",
       "Đặt trước 7 ngày",
       "Xuất trình giấy đăng ký kết hôn trong 12 tháng",
     ],
     termsEn: [
-      "Valid for Zenova Suite or Deluxe Bay View",
+      "Valid for Owner's Suite or Grand Suite",
       "Minimum 2 days / 1 night",
       "Book at least 7 days ahead",
       "Marriage certificate within 12 months",
