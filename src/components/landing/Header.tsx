@@ -30,8 +30,9 @@ export function Header({ lang, setLang, t }: HeaderProps) {
   }, []);
 
   const navLinks = [
-    { href: "#about", label: t.nav.about },
-    { href: "#gallery", label: t.nav.gallery },
+    { href: "/#about", label: t.nav.about },
+    { href: "/gallery", label: t.nav.gallery },
+    { href: "/cabins", label: t.nav.cabins },
   ];
 
   return (
