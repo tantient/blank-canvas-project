@@ -164,11 +164,15 @@ export function CabinsPage() {
 
           <Reveal className="mt-16">
             <p className="eyebrow mb-5 text-zenova-gold">{vi ? "BẢNG SO SÁNH SUITE" : "SUITE COMPARISON"}</p>
-            <div className="overflow-x-auto rounded-sm border border-zenova-ink/10">
+
+            {/* Desktop / tablet: table keeps the requested column structure */}
+            <div className="hidden overflow-x-auto rounded-sm border border-zenova-ink/10 sm:block">
               <table className="w-full min-w-[640px] border-collapse text-left text-sm">
                 <thead>
                   <tr className="bg-zenova-ink/[0.04] text-[10px] uppercase tracking-[0.2em] text-zenova-stone/70">
-                    <th className="px-5 py-4 font-medium">{vi ? "Hạng phòng" : "Cabin type"}</th>
+                    <th className="sticky left-0 z-10 bg-zenova-ink/[0.04] px-5 py-4 font-medium shadow-[2px_0_6px_-2px_rgba(0,0,0,0.08)]">
+                      {vi ? "Hạng phòng" : "Cabin type"}
+                    </th>
                     <th className="px-5 py-4 font-medium">{vi ? AREA_LABEL_VI : AREA_LABEL_EN}</th>
                     <th className="px-5 py-4 font-medium">{vi ? "Giường" : "Bed"}</th>
                     <th className="px-5 py-4 font-medium">{vi ? "Sân riêng" : "Private terrace"}</th>
@@ -178,7 +182,9 @@ export function CabinsPage() {
                 <tbody>
                   {vipCabins.map((c) => (
                     <tr key={c.id} className="border-t border-zenova-ink/10 text-zenova-ink">
-                      <td className="px-5 py-4">{c.code}</td>
+                      <td className="sticky left-0 z-10 bg-zenova-ivory px-5 py-4 shadow-[2px_0_6px_-2px_rgba(0,0,0,0.08)]">
+                        {c.code}
+                      </td>
                       <td className="px-5 py-4">{c.area}</td>
                       <td className="px-5 py-4">King</td>
                       <td className="px-5 py-4">{vi ? "Có" : "Included"}</td>
@@ -188,6 +194,40 @@ export function CabinsPage() {
                 </tbody>
               </table>
             </div>
+
+            {/* Mobile: same 5 data points, no overflow, card layout */}
+            <div className="space-y-4 sm:hidden">
+              {vipCabins.map((c) => (
+                <article
+                  key={c.id}
+                  className="rounded-sm border border-zenova-ink/10 bg-card p-5"
+                >
+                  <p className="mb-1 text-[10px] uppercase tracking-[0.2em] text-zenova-stone/70">
+                    {vi ? "Hạng phòng" : "Cabin type"}
+                  </p>
+                  <p className="mb-4 text-sm font-medium text-card-foreground">{c.code}</p>
+                  <dl className="space-y-3 text-xs">
+                    <div className="flex items-start justify-between gap-4 border-b border-zenova-ink/10 pb-3">
+                      <dt className="text-zenova-stone/70">{vi ? AREA_LABEL_VI : AREA_LABEL_EN}</dt>
+                      <dd className="font-medium text-card-foreground">{c.area}</dd>
+                    </div>
+                    <div className="flex items-start justify-between gap-4 border-b border-zenova-ink/10 pb-3">
+                      <dt className="text-zenova-stone/70">{vi ? "Giường" : "Bed"}</dt>
+                      <dd className="font-medium text-card-foreground">King</dd>
+                    </div>
+                    <div className="flex items-start justify-between gap-4 border-b border-zenova-ink/10 pb-3">
+                      <dt className="text-zenova-stone/70">{vi ? "Sân riêng" : "Private terrace"}</dt>
+                      <dd className="font-medium text-card-foreground">{vi ? "Có" : "Included"}</dd>
+                    </div>
+                    <div className="flex items-start justify-between gap-4">
+                      <dt className="text-zenova-stone/70">{vi ? "Hồ sục ngoài trời" : "Outdoor whirlpool"}</dt>
+                      <dd className="font-medium text-card-foreground">{vi ? "Có" : "Included"}</dd>
+                    </div>
+                  </dl>
+                </article>
+              ))}
+            </div>
+
             <p className="mt-4 text-xs leading-relaxed text-zenova-stone/70">
               {vi ? AREA_NOTE_VI : AREA_NOTE_EN}
             </p>
