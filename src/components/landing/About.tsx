@@ -35,7 +35,7 @@ export function About({ t }: AboutProps) {
               const Icon = icons[idx % icons.length]!;
               return (
                 <Reveal key={feature.title} delay={120 * idx}>
-                  <div className="group h-full border border-zenova-ink/10 bg-zenova-warm/25 p-7 transition-all duration-500 hover:-translate-y-1 hover:border-zenova-gold/60 hover:bg-white">
+                  <div className="group h-full border border-zenova-ink/10 bg-zenova-warm/25 p-7 transition-all duration-500 hover:-translate-y-1 hover:border-zenova-gold/60 hover:bg-zenova-ivory">
                     <span className="mb-5 flex h-11 w-11 items-center justify-center rounded-full border border-zenova-gold/50 transition-colors duration-500 group-hover:border-zenova-gold">
                       <Icon className="h-5 w-5 text-zenova-gold" strokeWidth={1.25} />
                     </span>

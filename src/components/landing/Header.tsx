@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { ZenovaLogo } from "./ZenovaLogo";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import type { Lang } from "./translations";
 
 interface HeaderProps {
@@ -98,6 +99,14 @@ export function Header({ lang, setLang, t }: HeaderProps) {
             </button>
           </div>
 
+          <ThemeToggle
+            className={
+              scrolled
+                ? "border-zenova-ink/15 text-zenova-ink hover:bg-zenova-ink/5"
+                : "border-zenova-ivory/30 text-zenova-ivory hover:bg-zenova-ivory/10"
+            }
+          />
+
           <Button asChild className="btn-sheen rounded-none bg-zenova-gold text-[11px] font-semibold uppercase tracking-[0.18em] text-zenova-ink hover:bg-zenova-gold/90">
             <a href={QUOTE_LINK} target="_blank" rel="noopener noreferrer">
               {t.nav.quote}
@@ -148,6 +157,7 @@ export function Header({ lang, setLang, t }: HeaderProps) {
               >
                 EN
               </button>
+              <ThemeToggle className="border-zenova-ink/15 text-zenova-ink hover:bg-zenova-ink/5" />
             </div>
             <Button asChild className="btn-sheen rounded-none bg-zenova-gold text-[11px] font-semibold uppercase tracking-[0.18em] text-zenova-ink hover:bg-zenova-gold/90">
               <a href={QUOTE_LINK} target="_blank" rel="noopener noreferrer">

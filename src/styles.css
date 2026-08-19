@@ -142,6 +142,13 @@
   --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
+  --zenova-ink: oklch(0.955 0.008 109.2);
+  --zenova-ivory: oklch(0.155 0.022 264);
+  --zenova-gold: oklch(0.79 0.088 88.7);
+  --zenova-navy: oklch(0.115 0.024 274.7);
+  --zenova-stone: oklch(0.235 0.014 270.5);
+  --zenova-warm: oklch(0.225 0.014 264);
+  color-scheme: dark;
 }
 
 @layer base {
