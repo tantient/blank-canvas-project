@@ -79,14 +79,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Zenova Cruise | Du thuyền 6 sao Hạ Long - Lan Hạ" },
+      {
+        name: "description",
+        content:
+          "Zenova Cruise - trải nghiệm du thuyền 6 sao tại vịnh Hạ Long và Lan Hạ. Phòng nghỉ hướng biển, nhà hàng Panorama, spa và dịch vụ đẳng cấp.",
+      },
+      { name: "author", content: "Zenova Cruise" },
+      { property: "og:title", content: "Zenova Cruise | Du thuyền 6 sao Hạ Long - Lan Hạ" },
+      {
+        property: "og:description",
+        content:
+          "Zenova Cruise - trải nghiệm du thuyền 6 sao tại vịnh Hạ Long và Lan Hạ. Phòng nghỉ hướng biển, nhà hàng Panorama, spa và dịch vụ đẳng cấp.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:site", content: "@zenovacruise" },
     ],
     links: [
       {
