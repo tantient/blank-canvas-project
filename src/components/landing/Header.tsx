@@ -185,14 +185,14 @@ export function Header({ lang, setLang, t }: HeaderProps) {
         <div className="border-t border-zenova-ink/10 bg-zenova-ivory px-6 pb-6 md:hidden">
           <nav className="flex flex-col gap-4 pt-4">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
-                href={link.href}
+                to={link.href}
                 onClick={() => setMobileOpen(false)}
                 className="text-sm font-medium tracking-wide text-zenova-ink/80"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             <div className="pt-1">
               <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-zenova-ink/50">
@@ -200,14 +200,14 @@ export function Header({ lang, setLang, t }: HeaderProps) {
               </p>
               <div className="flex flex-col gap-3 border-l border-zenova-ink/10 pl-4">
                 {serviceLinks.map((link) => (
-                  <a
+                  <Link
                     key={link.href}
-                    href={link.href}
+                    to={link.href}
                     onClick={() => setMobileOpen(false)}
                     className="text-sm tracking-wide text-zenova-ink/80"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
