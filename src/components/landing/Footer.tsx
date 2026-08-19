@@ -7,9 +7,13 @@ interface FooterProps {
   t: {
     footer: { rights: string; tagline: string; contact: string[] };
     nav: {
+      about: string;
+      careers: string;
       itineraries: string;
       cabins: string;
       services: string;
+      gallery: string;
+      offers: string;
       contact: string;
     };
   };
@@ -23,9 +27,13 @@ const SOCIALS = [
 
 export function Footer({ t }: FooterProps) {
   const quickLinks = [
+    { label: t.nav.about, to: "/about" as const },
+    { label: t.nav.careers, to: "/careers" as const },
     { label: t.nav.itineraries, to: "/itineraries" as const },
     { label: t.nav.cabins, to: "/cabins" as const },
     { label: t.nav.services, to: "/services/$serviceId" as const, params: { serviceId: "dining" } },
+    { label: t.nav.gallery, to: "/gallery" as const },
+    { label: t.nav.offers, to: "/offers" as const },
     { label: t.nav.contact, to: "/contact" as const },
   ];
 

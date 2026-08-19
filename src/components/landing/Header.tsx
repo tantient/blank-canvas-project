@@ -36,12 +36,6 @@ export function Header({ lang, setLang, t }: HeaderProps) {
     { href: "/cabins", label: t.nav.cabins },
     { href: "/gallery", label: t.nav.gallery },
     { href: "/offers", label: t.nav.offers },
-    { href: "/contact", label: t.nav.contact },
-  ];
-
-  const moreLinks = [
-    { href: "/careers", label: t.nav.careers },
-    { href: "/about", label: t.nav.about },
   ];
 
   const serviceLinks = services.map((s) => ({
@@ -123,34 +117,6 @@ export function Header({ lang, setLang, t }: HeaderProps) {
           >
             {t.nav.offers}
           </Link>
-          <Link
-            to="/contact"
-            className={`whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.12em] transition-colors ${linkClasses}`}
-          >
-            {t.nav.contact}
-          </Link>
-
-          <div className="group relative">
-            <button
-              className={`flex items-center gap-1 whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.12em] transition-colors ${linkClasses}`}
-            >
-              {t.nav.more}
-              <ChevronDown className="h-3.5 w-3.5" />
-            </button>
-            <div className="invisible absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 pt-4 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-              <div className="rounded-sm border border-zenova-ink/10 bg-zenova-ivory py-2 shadow-lg">
-                {moreLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    to={link.href}
-                    className={dropdownLinkClasses}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
@@ -215,16 +181,6 @@ export function Header({ lang, setLang, t }: HeaderProps) {
         <div className="border-t border-zenova-ink/10 bg-zenova-ivory px-6 pb-6 xl:hidden">
           <nav className="flex flex-col gap-4 pt-4">
             {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="text-sm font-medium tracking-wide text-zenova-ink/80"
-              >
-                {link.label}
-              </Link>
-            ))}
-            {moreLinks.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
