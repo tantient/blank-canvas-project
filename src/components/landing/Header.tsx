@@ -31,15 +31,21 @@ export function Header({ lang, setLang, t }: HeaderProps) {
   }, []);
 
   const navLinks = [
-    { href: "/#about", label: t.nav.about },
+    { href: "/itineraries", label: t.nav.itineraries },
     { href: "/cabins", label: t.nav.cabins },
     { href: "/gallery", label: t.nav.gallery },
+    { href: "/offers", label: t.nav.offers },
+    { href: "/about", label: t.nav.about },
   ];
 
   const serviceLinks = services.map((s) => ({
     href: `/services/${s.id}`,
     label: lang === "vi" ? s.nameVi : s.nameEn,
   }));
+
+  const linkClasses = scrolled
+    ? "text-zenova-ink/80 hover:text-zenova-ink"
+    : "text-zenova-ivory/90 hover:text-zenova-ivory";
 
   return (
     <header
@@ -50,7 +56,7 @@ export function Header({ lang, setLang, t }: HeaderProps) {
       }`}
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
-        <a href="#" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <ZenovaLogo
             showTagline={false}
             className={`h-9 text-[15px] transition-colors ${
@@ -58,37 +64,25 @@ export function Header({ lang, setLang, t }: HeaderProps) {
             }`}
             aria-label="Zenova Cruise"
           />
-        </a>
+        </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
-          <a
-            href={navLinks[0]!.href}
-            className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors ${
-              scrolled
-                ? "text-zenova-ink/80 hover:text-zenova-ink"
-                : "text-zenova-ivory/90 hover:text-zenova-ivory"
-            }`}
+        <nav className="hidden items-center gap-8 lg:flex">
+          <Link
+            to="/itineraries"
+            className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors ${linkClasses}`}
           >
-            {navLinks[0]!.label}
-          </a>
-          <a
-            href={navLinks[1]!.href}
-            className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors ${
-              scrolled
-                ? "text-zenova-ink/80 hover:text-zenova-ink"
-                : "text-zenova-ivory/90 hover:text-zenova-ivory"
-            }`}
+            {t.nav.itineraries}
+          </Link>
+          <Link
+            to="/cabins"
+            className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors ${linkClasses}`}
           >
-            {navLinks[1]!.label}
-          </a>
+            {t.nav.cabins}
+          </Link>
 
           <div className="group relative">
             <button
-              className={`flex items-center gap-1 text-[11px] font-medium uppercase tracking-[0.22em] transition-colors ${
-                scrolled
-                  ? "text-zenova-ink/80 hover:text-zenova-ink"
-                  : "text-zenova-ivory/90 hover:text-zenova-ivory"
-              }`}
+              className={`flex items-center gap-1 text-[11px] font-medium uppercase tracking-[0.22em] transition-colors ${linkClasses}`}
             >
               {t.nav.services}
               <ChevronDown className="h-3.5 w-3.5" />
@@ -96,28 +90,36 @@ export function Header({ lang, setLang, t }: HeaderProps) {
             <div className="invisible absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-4 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
               <div className="rounded-sm border border-zenova-ink/10 bg-zenova-ivory py-2 shadow-lg">
                 {serviceLinks.map((link) => (
-                  <a
+                  <Link
                     key={link.href}
-                    href={link.href}
+                    to={link.href}
                     className="block px-5 py-2.5 text-[12px] tracking-wide text-zenova-ink/80 transition-colors hover:bg-zenova-ink/5 hover:text-zenova-ink"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
           </div>
 
-          <a
-            href={navLinks[2]!.href}
-            className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors ${
-              scrolled
-                ? "text-zenova-ink/80 hover:text-zenova-ink"
-                : "text-zenova-ivory/90 hover:text-zenova-ivory"
-            }`}
+          <Link
+            to="/gallery"
+            className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors ${linkClasses}`}
           >
-            {navLinks[2]!.label}
-          </a>
+            {t.nav.gallery}
+          </Link>
+          <Link
+            to="/offers"
+            className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors ${linkClasses}`}
+          >
+            {t.nav.offers}
+          </Link>
+          <Link
+            to="/about"
+            className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors ${linkClasses}`}
+          >
+            {t.nav.about}
+          </Link>
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
