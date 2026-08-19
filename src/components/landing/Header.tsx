@@ -159,8 +159,8 @@ export function Header({ lang, setLang, t }: HeaderProps) {
           />
 
           <Button asChild className="btn-sheen rounded-none bg-zenova-gold text-[11px] font-semibold uppercase tracking-[0.18em] text-zenova-ink hover:bg-zenova-gold/90">
-            <a href={QUOTE_LINK} target="_blank" rel="noopener noreferrer">
-              {t.nav.quote}
+            <a href={BOOKING_LINK} target="_blank" rel="noopener noreferrer">
+              {t.nav.book}
             </a>
           </Button>
         </div>
@@ -228,8 +228,8 @@ export function Header({ lang, setLang, t }: HeaderProps) {
               <ThemeToggle className="border-zenova-ink/15 text-zenova-ink hover:bg-zenova-ink/5" />
             </div>
             <Button asChild className="btn-sheen rounded-none bg-zenova-gold text-[11px] font-semibold uppercase tracking-[0.18em] text-zenova-ink hover:bg-zenova-gold/90">
-              <a href={QUOTE_LINK} target="_blank" rel="noopener noreferrer">
-                {t.nav.quote}
+              <a href={BOOKING_LINK} target="_blank" rel="noopener noreferrer">
+                {t.nav.book}
               </a>
             </Button>
           </nav>
