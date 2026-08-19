@@ -137,6 +137,7 @@ const translations = {
       quote: "Get a quote",
       book: "Book now",
       contact: "Contact",
+      more: "More",
     },
     hero: {
       tagline: "Six-star cruise in Ha Long Bay",
