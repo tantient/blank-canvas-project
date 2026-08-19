@@ -8,7 +8,7 @@ const TITLE = "Phòng nghỉ Zenova Cruise | Suite & cabin hướng vịnh";
 const DESC =
   "Các hạng phòng trên Zenova Cruise: Zenova Suite, Deluxe Bay View và Ocean Cabin - thiết kế hướng vịnh, tiện nghi 6 sao trên vịnh Hạ Long.";
 
-export const Route = createFileRoute("/cabins")({
+export const Route = createFileRoute("/cabins/")({
   head: () => ({
     meta: [
       { title: TITLE },

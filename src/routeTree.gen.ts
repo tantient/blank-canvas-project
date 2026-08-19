@@ -10,17 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as CabinsRouteImport } from './routes/cabins'
 import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as CabinsIndexRouteImport } from './routes/cabins.index'
+import { Route as CabinsCabinIdRouteImport } from './routes/cabins.$cabinId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CabinsRoute = CabinsRouteImport.update({
-  id: '/cabins',
-  path: '/cabins',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleryRoute = GalleryRouteImport.update({
@@ -28,35 +24,49 @@ const GalleryRoute = GalleryRouteImport.update({
   path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CabinsIndexRoute = CabinsIndexRouteImport.update({
+  id: '/cabins/',
+  path: '/cabins/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CabinsCabinIdRoute = CabinsCabinIdRouteImport.update({
+  id: '/cabins/$cabinId',
+  path: '/cabins/$cabinId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/cabins': typeof CabinsRoute
   '/gallery': typeof GalleryRoute
+  '/cabins/$cabinId': typeof CabinsCabinIdRoute
+  '/cabins/': typeof CabinsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/cabins': typeof CabinsRoute
   '/gallery': typeof GalleryRoute
+  '/cabins/$cabinId': typeof CabinsCabinIdRoute
+  '/cabins': typeof CabinsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/cabins': typeof CabinsRoute
   '/gallery': typeof GalleryRoute
+  '/cabins/$cabinId': typeof CabinsCabinIdRoute
+  '/cabins/': typeof CabinsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cabins' | '/gallery'
+  fullPaths: '/' | '/gallery' | '/cabins/$cabinId' | '/cabins/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cabins' | '/gallery'
-  id: '__root__' | '/' | '/cabins' | '/gallery'
+  to: '/' | '/gallery' | '/cabins/$cabinId' | '/cabins'
+  id: '__root__' | '/' | '/gallery' | '/cabins/$cabinId' | '/cabins/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CabinsRoute: typeof CabinsRoute
   GalleryRoute: typeof GalleryRoute
+  CabinsCabinIdRoute: typeof CabinsCabinIdRoute
+  CabinsIndexRoute: typeof CabinsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -68,13 +78,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/cabins': {
-      id: '/cabins'
-      path: '/cabins'
-      fullPath: '/cabins'
-      preLoaderRoute: typeof CabinsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/gallery': {
       id: '/gallery'
       path: '/gallery'
@@ -82,13 +85,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cabins/': {
+      id: '/cabins/'
+      path: '/cabins'
+      fullPath: '/cabins/'
+      preLoaderRoute: typeof CabinsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cabins/$cabinId': {
+      id: '/cabins/$cabinId'
+      path: '/cabins/$cabinId'
+      fullPath: '/cabins/$cabinId'
+      preLoaderRoute: typeof CabinsCabinIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CabinsRoute: CabinsRoute,
   GalleryRoute: GalleryRoute,
+  CabinsCabinIdRoute: CabinsCabinIdRoute,
+  CabinsIndexRoute: CabinsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

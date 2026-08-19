@@ -104,3 +104,102 @@ export const cabinTypes: CabinType[] = [
     ],
   },
 ];
+
+export interface LayoutZone {
+  labelVi: string;
+  labelEn: string;
+  /** Toạ độ % trong sơ đồ bố trí */
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
+export interface CabinDetail {
+  capacityVi: string;
+  capacityEn: string;
+  bedVi: string;
+  bedEn: string;
+  deckVi: string;
+  deckEn: string;
+  highlightsVi: string[];
+  highlightsEn: string[];
+  layout: LayoutZone[];
+}
+
+export const cabinDetails: Record<string, CabinDetail> = {
+  suite: {
+    capacityVi: "2 người lớn + 2 trẻ em",
+    capacityEn: "2 adults + 2 children",
+    bedVi: "1 giường King + sofa bed",
+    bedEn: "1 King bed + sofa bed",
+    deckVi: "Tầng 4 – khu vực riêng tư",
+    deckEn: "Deck 4 – private wing",
+    highlightsVi: [
+      "Phòng khách tách biệt với khu ngủ, phù hợp tiếp khách hoặc làm việc.",
+      "Bồn tắm đặt sát cửa kính, ngắm vịnh khi hoàng hôn buông.",
+      "Ban công riêng với ghế nằm và bàn trà ngoài trời.",
+    ],
+    highlightsEn: [
+      "A living room fully separated from the sleeping area, ideal for hosting or working.",
+      "A bathtub set against the glass wall, facing the bay at sunset.",
+      "Private balcony with loungers and an outdoor tea table.",
+    ],
+    layout: [
+      { labelVi: "Ban công", labelEn: "Balcony", x: 2, y: 2, w: 96, h: 18 },
+      { labelVi: "Phòng khách", labelEn: "Living room", x: 2, y: 24, w: 54, h: 40 },
+      { labelVi: "Phòng ngủ", labelEn: "Bedroom", x: 58, y: 24, w: 40, h: 40 },
+      { labelVi: "Phòng tắm", labelEn: "Bathroom", x: 2, y: 68, w: 40, h: 30 },
+      { labelVi: "Tủ đồ & lối vào", labelEn: "Wardrobe & entry", x: 44, y: 68, w: 54, h: 30 },
+    ],
+  },
+  deluxe: {
+    capacityVi: "2 người lớn + 1 trẻ em",
+    capacityEn: "2 adults + 1 child",
+    bedVi: "1 giường King hoặc 2 giường đơn",
+    bedEn: "1 King bed or 2 twin beds",
+    deckVi: "Tầng 3 – hướng vịnh",
+    deckEn: "Deck 3 – bay facing",
+    highlightsVi: [
+      "Vách kính cao hết trần đưa toàn bộ mặt vịnh vào phòng.",
+      "Góc làm việc riêng bên cửa sổ, đủ yên tĩnh cho một buổi sáng dài.",
+      "Phòng tắm ốp đá tự nhiên với vòi sen áp lực cao.",
+    ],
+    highlightsEn: [
+      "A full-height glass wall brings the entire bay into the room.",
+      "A dedicated work nook by the window, quiet enough for a long morning.",
+      "Natural stone bathroom with a high-pressure rain shower.",
+    ],
+    layout: [
+      { labelVi: "Ban công", labelEn: "Balcony", x: 2, y: 2, w: 96, h: 16 },
+      { labelVi: "Khu ngủ", labelEn: "Sleeping area", x: 2, y: 22, w: 62, h: 46 },
+      { labelVi: "Góc làm việc", labelEn: "Work nook", x: 66, y: 22, w: 32, h: 46 },
+      { labelVi: "Phòng tắm", labelEn: "Bathroom", x: 2, y: 72, w: 46, h: 26 },
+      { labelVi: "Lối vào", labelEn: "Entry", x: 50, y: 72, w: 48, h: 26 },
+    ],
+  },
+  standard: {
+    capacityVi: "2 người lớn",
+    capacityEn: "2 adults",
+    bedVi: "1 giường đôi hoặc 2 giường đơn",
+    bedEn: "1 double bed or 2 twin beds",
+    deckVi: "Tầng 2 – hướng biển",
+    deckEn: "Deck 2 – sea facing",
+    highlightsVi: [
+      "Thiết kế tối giản, tối ưu ánh sáng tự nhiên suốt cả ngày.",
+      "Cửa sổ lớn hướng biển ngay cạnh đầu giường.",
+      "Đầy đủ tiện nghi cho khách lẻ và nhóm bạn đi cùng nhau.",
+    ],
+    highlightsEn: [
+      "A minimal design that maximises natural light all day long.",
+      "A large sea-facing window right beside the bed.",
+      "Fully equipped for solo travellers and groups of friends.",
+    ],
+    layout: [
+      { labelVi: "Cửa sổ hướng biển", labelEn: "Sea-view window", x: 2, y: 2, w: 96, h: 12 },
+      { labelVi: "Khu ngủ", labelEn: "Sleeping area", x: 2, y: 18, w: 96, h: 48 },
+      { labelVi: "Phòng tắm", labelEn: "Bathroom", x: 2, y: 70, w: 44, h: 28 },
+      { labelVi: "Tủ đồ & lối vào", labelEn: "Wardrobe & entry", x: 48, y: 70, w: 50, h: 28 },
+    ],
+  },
+};
