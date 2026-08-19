@@ -5,6 +5,7 @@ const translations = {
     nav: {
       about: "Giới thiệu",
       gallery: "Thư viện ảnh",
+      cabins: "Phòng nghỉ",
       quote: "Nhận báo giá",
     },
     hero: {
