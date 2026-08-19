@@ -5,7 +5,7 @@ import { ZenovaLogo } from "./ZenovaLogo";
 
 interface FooterProps {
   t: {
-    footer: { rights: string; tagline: string; contact: string[] };
+    footer: { rights: string; tagline: string; quickLinks: string; contact: string[] };
     nav: {
       about: string;
       careers: string;
@@ -39,14 +39,14 @@ export function Footer({ t }: FooterProps) {
 
   return (
     <footer className="border-t border-zenova-gold/20 bg-zenova-ivory">
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="grid gap-12 md:grid-cols-3 md:items-start">
+      <div className="mx-auto max-w-7xl px-5 py-10 md:px-6 md:py-16 lg:px-8">
+        <div className="grid min-w-0 gap-8 md:grid-cols-3 md:items-start md:gap-12">
           {/* Brand + tagline */}
-          <div className="flex flex-col items-center gap-5 text-center md:items-start md:text-left">
+          <div className="flex min-w-0 flex-col items-center gap-4 text-center md:items-start md:text-left">
             <ZenovaLogo
               variant="stacked"
               showTagline={false}
-              className="h-20 text-[14px] text-zenova-ink/90"
+              className="h-16 text-[13px] text-zenova-ink/90 md:h-20 md:text-[14px]"
               aria-label="Zenova Cruise"
             />
             <p className="text-[11px] uppercase tracking-[0.32em] text-zenova-stone/80">
@@ -55,33 +55,38 @@ export function Footer({ t }: FooterProps) {
           </div>
 
           {/* Quick links */}
-          <nav className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
+          <nav className="flex min-w-0 flex-col items-center gap-3 md:items-start md:text-left">
             <p className="mb-1 text-[11px] uppercase tracking-[0.28em] text-zenova-stone/60">
-              Zenova
+              {t.footer.quickLinks}
             </p>
-            {quickLinks.map((link) => (
-              <Link
-                key={link.label}
-                to={link.to}
-                {...(link.params ? { params: link.params } : {})}
-                className="text-sm tracking-wide text-zenova-stone/85 transition-colors hover:text-zenova-gold"
-              >
-                {link.label}
-              </Link>
-            ))}
+            <div className="grid w-full max-w-xs grid-cols-2 gap-x-4 md:flex md:max-w-none md:flex-col md:gap-0">
+              {quickLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  to={link.to}
+                  {...(link.params ? { params: link.params } : {})}
+                  className="flex min-h-11 min-w-0 items-center justify-center py-2 text-sm tracking-wide text-zenova-stone/85 transition-colors hover:text-zenova-gold md:min-h-0 md:justify-start md:px-0 md:py-1"
+                >
+                  <span className="block truncate">{link.label}</span>
+                </Link>
+              ))}
+            </div>
           </nav>
 
           {/* Contact + socials */}
-          <div className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
+          <div className="flex min-w-0 flex-col items-center gap-3 text-center md:items-start md:text-left">
             <p className="mb-1 text-[11px] uppercase tracking-[0.28em] text-zenova-stone/60">
               {t.nav.contact}
             </p>
             {t.footer.contact.map((item) => (
-              <span key={item} className="text-sm tracking-wide text-zenova-stone/85">
+              <span
+                key={item}
+                className="flex min-h-11 min-w-0 items-center justify-center py-1 text-sm tracking-wide text-zenova-stone/85 md:min-h-0 md:justify-start"
+              >
                 {item}
               </span>
             ))}
-            <div className="mt-4 flex items-center gap-3">
+            <div className="mt-3 flex items-center gap-3">
               {SOCIALS.map(({ label, href, Icon }) => (
                 <a
                   key={label}
@@ -89,7 +94,7 @@ export function Footer({ t }: FooterProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-zenova-gold/30 text-zenova-stone/80 transition-colors hover:border-zenova-gold hover:text-zenova-gold"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-zenova-gold/30 text-zenova-stone/80 transition-colors hover:border-zenova-gold hover:text-zenova-gold md:h-9 md:w-9"
                 >
                   <Icon className="h-4 w-4" strokeWidth={1.5} />
                 </a>
@@ -98,7 +103,7 @@ export function Footer({ t }: FooterProps) {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-zenova-gold/15 pt-6 text-center">
+        <div className="mt-8 border-t border-zenova-gold/15 pt-6 text-center md:mt-12">
           <p className="text-xs tracking-wide text-zenova-stone/70">{t.footer.rights}</p>
         </div>
       </div>

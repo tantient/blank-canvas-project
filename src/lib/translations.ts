@@ -122,6 +122,7 @@ const translations = {
     footer: {
       rights: "© 2026 Zenova Cruise. All rights reserved.",
       tagline: "HA LONG BAY · LAN HA BAY",
+      quickLinks: "Liên kết nhanh",
       contact: ["+84 902 000 000", "booking@zenovacruise.com", "Vịnh Hạ Long · Lan Hạ, Việt Nam"],
     },
   },
@@ -246,6 +247,7 @@ const translations = {
     footer: {
       rights: "© 2026 Zenova Cruise. All rights reserved.",
       tagline: "HA LONG BAY · LAN HA BAY",
+      quickLinks: "Quick links",
       contact: ["+84 902 000 000", "booking@zenovacruise.com", "Ha Long Bay · Lan Ha, Vietnam"],
     },
   },
