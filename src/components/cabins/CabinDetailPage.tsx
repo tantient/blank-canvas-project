@@ -16,6 +16,7 @@ import {
   AREA_NOTE_EN,
   type CabinType,
 } from "./cabins-data";
+import { DeckPlan, DeckPlanProvider } from "./DeckPlan";
 
 const QUOTE_LINK = "https://zalo.me/";
 
