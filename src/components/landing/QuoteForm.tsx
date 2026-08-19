@@ -126,13 +126,18 @@ export function QuoteForm({ t }: QuoteFormProps) {
           </div>
           <Button
             type="submit"
-            className="btn-sheen mt-12 w-full rounded-none bg-zenova-gold text-xs font-semibold uppercase tracking-[0.2em] text-zenova-ink hover:bg-zenova-gold/90"
+            className="btn-sheen mt-10 w-full rounded-none bg-zenova-gold text-xs font-semibold uppercase tracking-[0.2em] text-zenova-ink hover:bg-zenova-gold/90"
             size="lg"
           >
             {t.form.submit}
           </Button>
         </Reveal>
       </div>
+      {/* Chuyển tông mềm từ nền navy xuống footer sáng */}
+      <div
+        aria-hidden
+        className="mt-4 h-20 w-full bg-gradient-to-b from-zenova-ink to-zenova-ivory lg:h-28"
+      />
     </section>
   );
 }
