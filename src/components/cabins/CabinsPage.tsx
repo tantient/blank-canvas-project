@@ -32,6 +32,8 @@ export function CabinsPage() {
   const { lang, setLang, t } = useLanguage();
   const vi = lang === "vi";
   const vipCabins = cabinTypes.filter((c) => c.vip);
+  const [compareCabin, setCompareCabin] = useState<CabinType | null>(null);
+
 
   return (
     <div className="min-h-screen bg-zenova-ivory">
