@@ -14,7 +14,7 @@ interface HeaderProps {
   lang: Lang;
   setLang: (lang: Lang) => void;
   t: {
-    nav: { about: string; cabins: string; gallery: string; services: string; itineraries: string; offers: string; quote: string; book: string };
+    nav: { about: string; cabins: string; gallery: string; services: string; itineraries: string; offers: string; quote: string; book: string; contact: string };
   };
 }
 
@@ -37,6 +37,7 @@ export function Header({ lang, setLang, t }: HeaderProps) {
     { href: "/gallery", label: t.nav.gallery },
     { href: "/offers", label: t.nav.offers },
     { href: "/about", label: t.nav.about },
+    { href: "/contact", label: t.nav.contact },
   ];
 
   const serviceLinks = services.map((s) => ({
@@ -120,6 +121,12 @@ export function Header({ lang, setLang, t }: HeaderProps) {
             className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors ${linkClasses}`}
           >
             {t.nav.about}
+          </Link>
+          <Link
+            to="/contact"
+            className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors ${linkClasses}`}
+          >
+            {t.nav.contact}
           </Link>
         </nav>
 
