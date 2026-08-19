@@ -1,6 +1,6 @@
-import gallerySuite from "@/assets/zenova-gallery-suite.jpg.asset.json";
-import galleryDining from "@/assets/zenova-gallery-dining.jpg.asset.json";
-import gallerySundeck from "@/assets/zenova-gallery-sundeck.jpg.asset.json";
+import gallerySuite from "@/assets/gallery/zenova-suite-02.jpg.asset.json";
+import galleryDining from "@/assets/gallery/zenova-dining-panorama-01.jpg.asset.json";
+import gallerySundeck from "@/assets/gallery/zenova-public-pool.jpg.asset.json";
 
 import { Reveal } from "./Reveal";
 
@@ -16,10 +16,11 @@ interface GalleryProps {
 }
 
 const images = [
-  { src: gallerySuite.url, alt: "Luxury ocean-view suite on Zenova Cruise" },
-  { src: galleryDining.url, alt: "Fine dining restaurant aboard Zenova Cruise" },
-  { src: gallerySundeck.url, alt: "Sundeck and pool on Zenova Cruise" },
+  { src: gallerySuite.url, alt: "Ocean-view suite aboard Zenova Cruise" },
+  { src: galleryDining.url, alt: "Panorama fine-dining restaurant aboard Zenova Cruise" },
+  { src: gallerySundeck.url, alt: "Sundeck and infinity pool aboard Zenova Cruise" },
 ];
+
 
 export function Gallery({ t }: GalleryProps) {
   const main = images[0]!;
