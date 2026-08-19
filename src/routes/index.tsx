@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LandingPage } from "@/components/landing/LandingPage";
 import heroAsset from "@/assets/zenova-hero.jpg.asset.json";
 
-const SITE_URL = "https://id-preview--2c119f21-b14d-4bc2-8b7d-cf1e8edf1061.lovable.app";
+const SITE_URL = "https://id-preview--aaae7898-8e56-433d-9dbd-cdc3c97aac11.lovable.app";
 
 export const Route = createFileRoute("/")({
   head: () => ({
