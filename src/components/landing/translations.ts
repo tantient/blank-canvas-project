@@ -55,6 +55,7 @@ const translations = {
     nav: {
       about: "About",
       gallery: "Gallery",
+      cabins: "Cabins",
       quote: "Get a quote",
     },
     hero: {
