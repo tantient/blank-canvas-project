@@ -13,6 +13,7 @@ const translations = {
       quote: "Nhận báo giá",
       book: "Đặt phòng",
       contact: "Liên hệ",
+      more: "Khác",
     },
     hero: {
       tagline: "Du thuyền 6 sao tại vịnh Hạ Long",
@@ -136,6 +137,7 @@ const translations = {
       quote: "Get a quote",
       book: "Book now",
       contact: "Contact",
+      more: "More",
     },
     hero: {
       tagline: "Six-star cruise in Ha Long Bay",
