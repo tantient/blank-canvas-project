@@ -13,6 +13,7 @@ const translations = {
       quote: "Nhận báo giá",
       book: "Đặt phòng",
       contact: "Liên hệ",
+      more: "Khác",
     },
     hero: {
       tagline: "Du thuyền 6 sao tại vịnh Hạ Long",
