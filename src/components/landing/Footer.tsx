@@ -1,35 +1,96 @@
+import { Link } from "@tanstack/react-router";
+import { Facebook, Instagram, MessageCircle } from "lucide-react";
+
 import { ZenovaLogo } from "./ZenovaLogo";
 
 interface FooterProps {
   t: {
     footer: { rights: string; tagline: string; contact: string[] };
+    nav: {
+      itineraries: string;
+      cabins: string;
+      services: string;
+      contact: string;
+    };
   };
 }
 
-export function Footer({ t }: FooterProps) {
-  return (
-    <footer className="border-t border-zenova-gold/20 bg-zenova-ivory py-16">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex flex-col items-center gap-7 text-center">
-          <ZenovaLogo
-            variant="stacked"
-            showTagline={false}
-            className="h-24 text-[15px] text-zenova-ink/90"
-            aria-label="Zenova Cruise"
-          />
-          <p className="text-[11px] uppercase tracking-[0.32em] text-zenova-stone/80">
-            {t.footer.tagline}
-          </p>
+const SOCIALS = [
+  { label: "Facebook", href: "https://facebook.com/", Icon: Facebook },
+  { label: "Instagram", href: "https://instagram.com/", Icon: Instagram },
+  { label: "Zalo", href: "https://zalo.me/", Icon: MessageCircle },
+];
 
-          <div className="flex flex-col items-center gap-2 text-sm text-zenova-stone/85 sm:flex-row sm:gap-6">
+export function Footer({ t }: FooterProps) {
+  const quickLinks = [
+    { label: t.nav.itineraries, to: "/itineraries" as const },
+    { label: t.nav.cabins, to: "/cabins" as const },
+    { label: t.nav.services, to: "/services/$serviceId" as const, params: { serviceId: "dining" } },
+    { label: t.nav.contact, to: "/contact" as const },
+  ];
+
+  return (
+    <footer className="border-t border-zenova-gold/20 bg-zenova-ivory">
+      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+        <div className="grid gap-12 md:grid-cols-3 md:items-start">
+          {/* Brand + tagline */}
+          <div className="flex flex-col items-center gap-5 text-center md:items-start md:text-left">
+            <ZenovaLogo
+              variant="stacked"
+              showTagline={false}
+              className="h-20 text-[14px] text-zenova-ink/90"
+              aria-label="Zenova Cruise"
+            />
+            <p className="text-[11px] uppercase tracking-[0.32em] text-zenova-stone/80">
+              {t.footer.tagline}
+            </p>
+          </div>
+
+          {/* Quick links */}
+          <nav className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
+            <p className="mb-1 text-[11px] uppercase tracking-[0.28em] text-zenova-stone/60">
+              Zenova
+            </p>
+            {quickLinks.map((link) => (
+              <Link
+                key={link.label}
+                to={link.to}
+                {...(link.params ? { params: link.params } : {})}
+                className="text-sm tracking-wide text-zenova-stone/85 transition-colors hover:text-zenova-gold"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Contact + socials */}
+          <div className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
+            <p className="mb-1 text-[11px] uppercase tracking-[0.28em] text-zenova-stone/60">
+              {t.nav.contact}
+            </p>
             {t.footer.contact.map((item) => (
-              <span key={item} className="tracking-wide">
+              <span key={item} className="text-sm tracking-wide text-zenova-stone/85">
                 {item}
               </span>
             ))}
+            <div className="mt-4 flex items-center gap-3">
+              {SOCIALS.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-zenova-gold/30 text-zenova-stone/80 transition-colors hover:border-zenova-gold hover:text-zenova-gold"
+                >
+                  <Icon className="h-4 w-4" strokeWidth={1.5} />
+                </a>
+              ))}
+            </div>
           </div>
+        </div>
 
-          <div className="h-px w-24 bg-zenova-gold/40" />
+        <div className="mt-12 border-t border-zenova-gold/15 pt-6 text-center">
           <p className="text-xs tracking-wide text-zenova-stone/70">{t.footer.rights}</p>
         </div>
       </div>
