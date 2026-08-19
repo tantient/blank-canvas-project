@@ -2,7 +2,6 @@
 
 import { Header } from "./Header";
 import { Hero } from "./Hero";
-import { About } from "./About";
 import { Gallery } from "./Gallery";
 import { QuoteForm } from "./QuoteForm";
 import { Footer } from "./Footer";
@@ -16,7 +15,6 @@ export function LandingPage() {
       <Header lang={lang} setLang={setLang} t={t} />
       <main>
         <Hero t={t} />
-        <About t={t} />
         <Gallery t={t} />
         <QuoteForm t={t} />
       </main>

@@ -7,17 +7,17 @@ import { Button } from "@/components/ui/button";
 import { ZenovaLogo } from "./ZenovaLogo";
 import { services } from "@/components/services/services-data";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import type { Lang } from "./translations";
+import type { Lang } from "@/lib/translations";
 
 interface HeaderProps {
   lang: Lang;
   setLang: (lang: Lang) => void;
   t: {
-    nav: { about: string; gallery: string; cabins: string; services: string; quote: string };
+    nav: { about: string; cabins: string; gallery: string; services: string; itineraries: string; offers: string; quote: string; book: string };
   };
 }
 
-const QUOTE_LINK = "https://zalo.me/";
+const BOOKING_LINK = "https://zalo.me/";
 
 export function Header({ lang, setLang, t }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
