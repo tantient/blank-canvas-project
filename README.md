@@ -1,12 +1,12 @@
-# Blank Canvas Project
+# Zenova Cruise: Luxury Ha Long
 
-tạo 1 project rỗng
+tao muốn làm 1 logo cho du thuyền 6* ở hạ long, tên là zenova cruise, mày có ý tưởng gì ko
 
 This project was built with [Lovable](https://lovable.dev).
 
 ## Build with Lovable
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/aaae7898-8e56-433d-9dbd-cdc3c97aac11).
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/2c119f21-b14d-4bc2-8b7d-cf1e8edf1061).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
 - **Stay in sync**: every change made in Lovable is committed straight to this repository.

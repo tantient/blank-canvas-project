@@ -59,6 +59,12 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-zenova-ink: var(--zenova-ink);
+  --color-zenova-ivory: var(--zenova-ivory);
+  --color-zenova-gold: var(--zenova-gold);
+  --color-zenova-navy: var(--zenova-navy);
+  --color-zenova-stone: var(--zenova-stone);
+  --color-zenova-warm: var(--zenova-warm);
 }
 
 :root {
@@ -95,6 +101,12 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+  --zenova-ink: oklch(0.208 0.042 264);
+  --zenova-ivory: oklch(0.959 0.013 109.2);
+  --zenova-gold: oklch(0.728 0.063 88.7);
+  --zenova-navy: oklch(0.164 0.031 274.7);
+  --zenova-stone: oklch(0.271 0.014 270.5);
+  --zenova-warm: oklch(0.918 0.005 263.5);
 }
 
 .dark {
@@ -137,8 +149,139 @@
     border-color: var(--color-border);
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: "Jura", ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: 0.01em;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: "Cormorant Garamond", "Times New Roman", serif;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
+}
+
+/* Brand typography (logo lockup) */
+@utility font-display {
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-weight: 400;
+}
+
+@utility font-body {
+  font-family: "Jura", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+}
+
+/* Hero slideshow: zoom rất chậm (Ken Burns) */
+@keyframes hero-kenburns {
+  from {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+
+.hero-kenburns {
+  transform: scale(1.02);
+  transform-origin: center center;
+}
+
+.hero-kenburns-active {
+  animation: hero-kenburns 14s ease-out forwards;
+}
+
+/* Reveal khi cuộn / khi tải trang */
+@keyframes zenova-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility reveal {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+  }
+
+  .reveal-in {
+    animation: zenova-fade-up 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+}
+
+/* Vạch nhãn nhỏ màu vàng champagne */
+@utility eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+
+  &::before {
+    content: "";
+    width: 2.25rem;
+    height: 1px;
+    background-color: var(--zenova-gold);
+    opacity: 0.8;
+  }
+}
+
+/* Nút vàng có ánh sáng quét nhẹ khi hover */
+@utility btn-sheen {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -60%;
+    width: 40%;
+    background: linear-gradient(
+      100deg,
+      transparent,
+      rgba(255, 255, 255, 0.55),
+      transparent
+    );
+    transform: skewX(-18deg);
+    transition: left 700ms ease;
+  }
+
+  &:hover::after {
+    left: 120%;
+  }
+}
+
+/* Input dạng gạch chân trên nền tối */
+@utility field-underline {
+  border-radius: 0;
+  border-width: 0 0 1px 0;
+  background-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+  box-shadow: none;
+
+  &:focus-visible {
+    box-shadow: none;
+    outline: none;
   }
 }
