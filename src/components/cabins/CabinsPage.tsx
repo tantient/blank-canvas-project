@@ -7,7 +7,7 @@ import { Footer } from "@/components/landing/Footer";
 import { useLanguage } from "@/components/landing/use-language";
 import { Reveal } from "@/components/landing/Reveal";
 import { Button } from "@/components/ui/button";
-import { cabinTypes } from "./cabins-data";
+import { cabinTypes, TOTAL_CABINS } from "./cabins-data";
 
 const QUOTE_LINK = "https://zalo.me/";
 
@@ -29,101 +29,111 @@ export function CabinsPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-zenova-ink/85 via-zenova-ink/30 to-zenova-ink/40" />
           <div className="absolute inset-0 flex items-end">
             <div className="mx-auto w-full max-w-7xl px-6 pb-16 lg:px-8">
-              <p className="eyebrow mb-5 text-zenova-gold">
-                {vi ? "PHÒNG NGHỈ" : "CABINS"}
-              </p>
+              <p className="eyebrow mb-5 text-zenova-gold">{vi ? "PHÒNG NGHỈ" : "CABINS"}</p>
               <h1 className="max-w-3xl text-4xl tracking-[0.02em] text-zenova-ivory sm:text-5xl">
                 {vi ? "Giấc ngủ giữa lòng vịnh" : "Sleep in the heart of the bay"}
               </h1>
               <p className="mt-4 max-w-xl text-zenova-ivory/85">
                 {vi
-                  ? "40 phòng nghỉ hướng biển, mỗi hạng phòng là một cách cảm nhận khác nhau về Hạ Long."
-                  : "Forty sea-facing cabins, each category offering its own way of experiencing Ha Long."}
+                  ? `${TOTAL_CABINS} phòng nghỉ hướng biển, mỗi hạng phòng là một cách cảm nhận khác nhau về Hạ Long.`
+                  : `${TOTAL_CABINS} sea-facing cabins, each category offering its own way of experiencing Ha Long.`}
               </p>
             </div>
           </div>
         </section>
 
-        <div className="mx-auto max-w-7xl space-y-24 px-6 py-24 lg:space-y-32 lg:px-8 lg:py-32">
-          {cabinTypes.map((cabin, index) => {
-            const flip = index % 2 === 1;
-            return (
-              <section key={cabin.id} id={cabin.id} className="scroll-mt-28">
-                <div
-                  className={`grid items-center gap-10 lg:grid-cols-2 lg:gap-16 ${
-                    flip ? "lg:[&>*:first-child]:order-2" : ""
-                  }`}
-                >
-                  <Reveal>
-                    <div className="overflow-hidden rounded-sm bg-zenova-ink/5">
-                      <img
-                        src={cabin.hero}
-                        alt={vi ? cabin.nameVi : cabin.nameEn}
-                        loading="lazy"
-                        className="aspect-[4/3] w-full object-cover"
-                      />
-                    </div>
-                  </Reveal>
+        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
+          <Reveal className="mb-14 max-w-2xl">
+            <p className="eyebrow mb-5 text-zenova-gold">{vi ? "HẠNG PHÒNG" : "CABIN CATEGORIES"}</p>
+            <h2 className="mb-4 text-3xl tracking-[0.02em] text-zenova-ink sm:text-4xl">
+              {vi ? `Bốn hạng phòng, ${TOTAL_CABINS} lựa chọn` : `Four categories, ${TOTAL_CABINS} cabins`}
+            </h2>
+            <p className="text-zenova-stone/85">
+              {vi
+                ? "Tất cả các phòng đều hướng biển, sử dụng 1 giường đôi hoặc 2 giường đơn tuỳ yêu cầu của khách."
+                : "Every cabin faces the sea and can be arranged with one double bed or two twin beds on request."}
+            </p>
+          </Reveal>
 
-                  <Reveal delay={120}>
-                    <p className="eyebrow mb-5 text-zenova-gold">
-                      {String(index + 1).padStart(2, "0")}
-                    </p>
-                    <h2 className="mb-4 text-3xl tracking-[0.02em] text-zenova-ink sm:text-4xl">
-                      {vi ? cabin.nameVi : cabin.nameEn}
-                    </h2>
-                    <p className="mb-6 text-zenova-stone/85">{vi ? cabin.descVi : cabin.descEn}</p>
-
-                    <div className="mb-6 flex gap-8 border-y border-zenova-ink/10 py-4">
-                      <div>
-                        <p className="text-[10px] uppercase tracking-[0.24em] text-zenova-stone/70">
-                          {vi ? "Diện tích" : "Area"}
-                        </p>
-                        <p className="mt-1 text-zenova-ink">{cabin.area}</p>
-                      </div>
-                      <div>
-                        <p className="text-[10px] uppercase tracking-[0.24em] text-zenova-stone/70">
-                          {vi ? "Tầm nhìn" : "View"}
-                        </p>
-                        <p className="mt-1 text-zenova-ink">{cabin.view}</p>
-                      </div>
-                    </div>
-
-                    <ul className="grid gap-2 sm:grid-cols-2">
-                      {(vi ? cabin.amenitiesVi : cabin.amenitiesEn).map((a) => (
-                        <li key={a} className="flex items-start gap-2 text-sm text-zenova-stone/85">
-                          <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-zenova-gold" />
-                          {a}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <Link
-                      to="/cabins/$cabinId"
-                      params={{ cabinId: cabin.id }}
-                      className="mt-8 inline-block border-b border-zenova-gold pb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-zenova-ink hover:text-zenova-gold"
-                    >
-                      {vi ? "Xem chi tiết phòng" : "View cabin details"}
-                    </Link>
-                  </Reveal>
-                </div>
-
-                <div className="mt-6 flex gap-4 overflow-x-auto pb-2 lg:grid lg:grid-cols-4 lg:overflow-visible">
-                  {cabin.gallery.map((src, i) => (
+          <div className="grid gap-8 md:grid-cols-2">
+            {cabinTypes.map((cabin, index) => (
+              <Reveal key={cabin.id} delay={80 * index}>
+                <article className="flex h-full flex-col overflow-hidden rounded-sm border border-zenova-ink/10 bg-card">
+                  <Link
+                    to="/cabins/$cabinId"
+                    params={{ cabinId: cabin.id }}
+                    className="group block overflow-hidden"
+                  >
                     <img
-                      key={src}
-                      src={src}
-                      alt={`${vi ? cabin.nameVi : cabin.nameEn} ${i + 2}`}
+                      src={cabin.hero}
+                      alt={vi ? cabin.nameVi : cabin.nameEn}
                       loading="lazy"
-                      className="h-40 w-64 shrink-0 rounded-sm object-cover lg:h-44 lg:w-full"
+                      className="aspect-[4/3] w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.05]"
                     />
-                  ))}
-                </div>
-              </section>
-            );
-          })}
+                  </Link>
 
-          <Reveal className="border-t border-zenova-ink/10 pt-16 text-center">
+                  <div className="flex flex-1 flex-col p-7">
+                    <h3 className="mb-3 text-2xl tracking-[0.02em] text-card-foreground">
+                      {vi ? cabin.nameVi : cabin.nameEn}
+                    </h3>
+                    <p className="mb-6 text-sm leading-relaxed text-zenova-stone/85">
+                      {vi ? cabin.descVi : cabin.descEn}
+                    </p>
+
+                    <dl className="mb-6 grid grid-cols-2 gap-x-6 gap-y-4 border-y border-zenova-ink/10 py-5">
+                      <Spec label={vi ? "Diện tích" : "Area"} value={cabin.area} />
+                      <Spec
+                        label={vi ? "Số phòng" : "Cabins"}
+                        value={
+                          vi ? `${cabin.roomCount} phòng` : `${cabin.roomCount} cabins`
+                        }
+                      />
+                      <Spec
+                        label={vi ? "Giường" : "Bed"}
+                        value={vi ? cabin.bedVi : cabin.bedEn}
+                        wide
+                      />
+                      <Spec
+                        label={vi ? "Sức chứa tối đa" : "Max occupancy"}
+                        value={
+                          vi ? `${cabin.maxGuests} khách` : `${cabin.maxGuests} guests`
+                        }
+                        wide
+                      />
+                    </dl>
+
+                    <div className="mt-auto flex flex-wrap items-center gap-5">
+                      <Button
+                        asChild
+                        className="btn-sheen rounded-none bg-zenova-gold px-7 text-[11px] font-semibold uppercase tracking-[0.18em] text-zenova-ink hover:bg-zenova-gold/90"
+                      >
+                        <a href={QUOTE_LINK} target="_blank" rel="noopener noreferrer">
+                          {vi ? "Liên hệ báo giá" : "Request a quote"}
+                        </a>
+                      </Button>
+                      <Link
+                        to="/cabins/$cabinId"
+                        params={{ cabinId: cabin.id }}
+                        className="border-b border-zenova-gold pb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-card-foreground hover:text-zenova-gold"
+                      >
+                        {vi ? "Xem chi tiết" : "View details"}
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal className="mt-8 rounded-sm border border-zenova-gold/30 bg-zenova-gold/5 p-6">
+            <p className="text-sm leading-relaxed text-zenova-stone/85">
+              {vi
+                ? "Junior Suite loại A và loại B có sức chứa khác nhau. Số khách tối đa của từng phòng cụ thể sẽ được xác nhận khi bạn chọn phòng, không áp dụng chung một con số cho cả nhóm Junior Suite."
+                : "Junior Suite type A and type B have different maximum occupancies. The exact figure is confirmed per individual cabin at the time of selection rather than applied to the Junior Suite group as a whole."}
+            </p>
+          </Reveal>
+
+          <Reveal className="mt-24 border-t border-zenova-ink/10 pt-16 text-center">
             <h2 className="mb-4 text-3xl tracking-[0.02em] text-zenova-ink">
               {vi ? "Chọn phòng phù hợp với bạn" : "Find the cabin that fits you"}
             </h2>
@@ -137,7 +147,7 @@ export function CabinsPage() {
               className="btn-sheen rounded-none bg-zenova-gold px-8 text-[11px] font-semibold uppercase tracking-[0.18em] text-zenova-ink hover:bg-zenova-gold/90"
             >
               <a href={QUOTE_LINK} target="_blank" rel="noopener noreferrer">
-                {t.nav.quote}
+                {vi ? "Liên hệ báo giá" : "Request a quote"}
               </a>
             </Button>
           </Reveal>
@@ -145,6 +155,15 @@ export function CabinsPage() {
       </main>
 
       <Footer t={t} />
+    </div>
+  );
+}
+
+function Spec({ label, value, wide }: { label: string; value: string; wide?: boolean }) {
+  return (
+    <div className={wide ? "col-span-2 sm:col-span-1" : ""}>
+      <dt className="text-[10px] uppercase tracking-[0.24em] text-zenova-stone/70">{label}</dt>
+      <dd className="mt-1 text-sm text-card-foreground">{value}</dd>
     </div>
   );
 }
