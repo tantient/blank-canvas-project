@@ -20,8 +20,12 @@ export function CabinDetailPage({ cabin }: { cabin: CabinType }) {
   const specs = [
     { label: vi ? "Diện tích" : "Area", value: cabin.area },
     { label: vi ? "Tầm nhìn" : "View", value: cabin.view },
-    { label: vi ? "Sức chứa" : "Capacity", value: vi ? detail.capacityVi : detail.capacityEn },
-    { label: vi ? "Giường" : "Bed", value: vi ? detail.bedVi : detail.bedEn },
+    {
+      label: vi ? "Số phòng" : "Cabins",
+      value: vi ? `${cabin.roomCount} phòng` : `${cabin.roomCount} cabins`,
+    },
+    { label: vi ? "Sức chứa tối đa" : "Max occupancy", value: vi ? detail.capacityVi : detail.capacityEn },
+    { label: vi ? "Giường" : "Bed", value: vi ? cabin.bedVi : cabin.bedEn },
     { label: vi ? "Vị trí" : "Location", value: vi ? detail.deckVi : detail.deckEn },
   ];
 
@@ -160,7 +164,7 @@ export function CabinDetailPage({ cabin }: { cabin: CabinType }) {
                 className="btn-sheen rounded-none bg-zenova-gold px-8 text-[11px] font-semibold uppercase tracking-[0.18em] text-zenova-ink hover:bg-zenova-gold/90"
               >
                 <a href={QUOTE_LINK} target="_blank" rel="noopener noreferrer">
-                  {t.nav.quote}
+                  {vi ? "Liên hệ báo giá" : "Request a quote"}
                 </a>
               </Button>
             </div>
