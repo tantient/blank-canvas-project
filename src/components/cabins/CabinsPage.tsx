@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 
 import { Header } from "@/components/landing/Header";
@@ -8,15 +9,24 @@ import { useLanguage } from "@/components/landing/use-language";
 import { Reveal } from "@/components/landing/Reveal";
 import { Button } from "@/components/ui/button";
 import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import {
   cabinTypes,
   TOTAL_CABINS,
   AREA_LABEL_VI,
   AREA_LABEL_EN,
   AREA_NOTE_VI,
   AREA_NOTE_EN,
+  type CabinType,
 } from "./cabins-data";
 
 const QUOTE_LINK = "https://zalo.me/";
+
 
 export function CabinsPage() {
   const { lang, setLang, t } = useLanguage();
