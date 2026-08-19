@@ -6,6 +6,7 @@ const translations = {
       about: "Giới thiệu",
       gallery: "Thư viện ảnh",
       cabins: "Phòng nghỉ",
+      services: "Dịch vụ",
       quote: "Nhận báo giá",
     },
     hero: {
@@ -56,6 +57,7 @@ const translations = {
       about: "About",
       gallery: "Gallery",
       cabins: "Cabins",
+      services: "Services",
       quote: "Get a quote",
     },
     hero: {
