@@ -63,10 +63,18 @@ Plan: Thư viện ảnh + các trang khu vực chi tiết (Nhà hàng, Giải tr
 
 ## Phạm vi lần này (đề xuất)
 - Hoàn thiện bước 1 và 2: tách ảnh, upload CDN, xây thư viện `/thu-vien`.
-- Tạo trước 1 trang khu vực mẫu (ví dụ `/nha-hang`) để bạn xem cách dùng ảnh khác với thư viện.
-- Các trang khu vực còn lại làm tiếp sau khi bạn duyệt mẫu.
+- Ưu tiên cao nhất: xây trang **Phòng ở** (`/phong`) làm trang khu vực mẫu, vì đây là khu vực khách quan tâm nhất khi quyết định đặt du thuyền.
+- Các trang khu vực còn lại (Nhà hàng, Giải trí, Khu vực chung, Ngoại thất) làm tiếp sau khi bạn duyệt mẫu Phòng ở.
+
+## Trang Phòng ở làm kỹ hơn các trang khác
+- Chia theo từng hạng phòng (ví dụ: Suite, Deluxe, Family...) thay vì gộp chung một lưới ảnh.
+- Mỗi hạng phòng có: ảnh lớn nổi bật, tên hạng phòng, mô tả ngắn, danh sách tiện nghi, diện tích/hướng nhìn nếu có, và vài ảnh phụ.
+- Bố cục xen kẽ ảnh trái/phải để tạo nhịp, khác hẳn cảm giác lưới của thư viện.
+- Dữ liệu hạng phòng để trong một file cấu hình riêng (mảng object), dễ thêm hạng phòng và dễ thay ảnh phối cảnh bằng ảnh thực sau này.
+- og:image của trang là ảnh phòng đẹp nhất; nếu sau này tách trang chi tiết cho từng hạng phòng thì cấu trúc dữ liệu này dùng lại được ngay.
 
 ## Câu hỏi cần quyết định
-- Đường dẫn trang khu vực dùng tiếng Việt (`/nha-hang`) hay tiếng Anh (`/dining`) cho đồng nhất với thương hiệu?
-- Trang mẫu đầu tiên bạn muốn làm khu vực nào? (Đề xuất: Nhà hàng vì có nhiều ảnh đẹp.)
+- Đường dẫn trang khu vực dùng tiếng Việt (`/phong`, `/nha-hang`) hay tiếng Anh (`/cabins`, `/dining`)?
+- Du thuyền có bao nhiêu hạng phòng và tên gọi từng hạng là gì? Nếu chưa chốt, tôi sẽ tạm nhóm theo ảnh phối cảnh và bạn chỉnh lại sau.
 - Có cần ghi chú "Hình ảnh phối cảnh" trên ảnh/đầu trang hay không?
+
