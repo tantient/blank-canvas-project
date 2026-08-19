@@ -224,6 +224,16 @@ export function Header({ lang, setLang, t }: HeaderProps) {
                 {link.label}
               </Link>
             ))}
+            {moreLinks.map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
+                onClick={() => setMobileOpen(false)}
+                className="text-sm font-medium tracking-wide text-zenova-ink/80"
+              >
+                {link.label}
+              </Link>
+            ))}
             <div className="pt-1">
               <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-zenova-ink/50">
                 {t.nav.services}
