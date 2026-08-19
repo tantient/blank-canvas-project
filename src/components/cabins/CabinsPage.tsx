@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 
 import { Header } from "@/components/landing/Header";
@@ -8,20 +9,31 @@ import { useLanguage } from "@/components/landing/use-language";
 import { Reveal } from "@/components/landing/Reveal";
 import { Button } from "@/components/ui/button";
 import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import {
   cabinTypes,
   TOTAL_CABINS,
   AREA_LABEL_VI,
   AREA_LABEL_EN,
   AREA_NOTE_VI,
   AREA_NOTE_EN,
+  type CabinType,
 } from "./cabins-data";
 
 const QUOTE_LINK = "https://zalo.me/";
+
 
 export function CabinsPage() {
   const { lang, setLang, t } = useLanguage();
   const vi = lang === "vi";
   const vipCabins = cabinTypes.filter((c) => c.vip);
+  const [compareCabin, setCompareCabin] = useState<CabinType | null>(null);
+
 
   return (
     <div className="min-h-screen bg-zenova-ivory">
@@ -138,10 +150,10 @@ export function CabinsPage() {
                       </p>
                     ) : null}
 
-                    <div className="mt-auto flex flex-wrap items-center gap-5">
+                    <div className="mt-auto flex flex-wrap items-center gap-3">
                       <Button
                         asChild
-                        className="btn-sheen rounded-none bg-zenova-gold px-7 text-[11px] font-semibold uppercase tracking-[0.18em] text-zenova-ink hover:bg-zenova-gold/90"
+                        className="btn-sheen rounded-none bg-zenova-gold px-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-zenova-ink hover:bg-zenova-gold/90"
                       >
                         <a href={QUOTE_LINK} target="_blank" rel="noopener noreferrer">
                           {vi ? "Liên hệ báo giá" : "Request a quote"}
@@ -154,7 +166,17 @@ export function CabinsPage() {
                       >
                         {vi ? "Xem chi tiết" : "View details"}
                       </Link>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setCompareCabin(cabin)}
+                        className="rounded-none border-zenova-gold/50 text-[11px] font-semibold uppercase tracking-[0.18em] text-card-foreground hover:border-zenova-gold hover:bg-zenova-gold/10 hover:text-zenova-gold"
+                      >
+                        {vi ? "So sánh chi tiết" : "Compare details"}
+                      </Button>
                     </div>
+
                   </div>
                 </article>
               </Reveal>
@@ -263,9 +285,122 @@ export function CabinsPage() {
       </main>
 
       <Footer t={t} />
+
+      <CabinCompareDialog
+        cabin={compareCabin}
+        open={!!compareCabin}
+        onClose={() => setCompareCabin(null)}
+        vi={vi}
+      />
     </div>
   );
 }
+
+function CabinCompareDialog({
+  cabin,
+  open,
+  onClose,
+  vi,
+}: {
+  cabin: CabinType | null;
+  open: boolean;
+  onClose: () => void;
+  vi: boolean;
+}) {
+  if (!cabin) return null;
+
+  const rows = [
+    { label: vi ? "Hạng phòng" : "Cabin type", value: vi ? cabin.nameVi : cabin.nameEn },
+    ...(cabin.code ? [{ label: vi ? "Mã kỹ thuật" : "Technical code", value: cabin.code }] : []),
+    {
+      label: cabin.vip ? (vi ? AREA_LABEL_VI : AREA_LABEL_EN) : vi ? "Diện tích" : "Area",
+      value: cabin.vip
+        ? vi
+          ? `${cabin.area} tổng diện tích riêng`
+          : `${cabin.area} Total Private Area`
+        : cabin.area,
+    },
+    { label: vi ? "Giường" : "Bed", value: vi ? cabin.bedVi : cabin.bedEn },
+    {
+      label: vi ? "Sức chứa tối đa" : "Max occupancy",
+      value: vi ? `${cabin.maxGuests} khách` : `${cabin.maxGuests} guests`,
+    },
+    { label: vi ? "Số phòng" : "Cabins", value: vi ? `${cabin.roomCount} phòng` : `${cabin.roomCount} cabins` },
+    { label: vi ? "Tầm nhìn" : "View", value: cabin.view },
+    ...(cabin.vip
+      ? [
+          { label: vi ? "Sân riêng" : "Private terrace", value: vi ? "Có" : "Included" },
+          { label: vi ? "Hồ sục ngoài trời" : "Outdoor whirlpool", value: vi ? "Có" : "Included" },
+        ]
+      : []),
+  ];
+
+  return (
+    <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
+      <DialogContent className="max-h-[90vh] max-w-md overflow-y-auto rounded-sm border-zenova-ink/10 bg-card p-0 sm:max-w-lg">
+        <div className="relative h-40 w-full sm:h-48">
+          <img
+            src={cabin.hero}
+            alt={vi ? cabin.nameVi : cabin.nameEn}
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-zenova-ink/80 via-zenova-ink/20 to-transparent" />
+          <div className="absolute bottom-0 left-0 p-5">
+            {cabin.code ? (
+              <p className="mb-1 text-[10px] uppercase tracking-[0.24em] text-zenova-gold">{cabin.code}</p>
+            ) : null}
+            <p className="text-xl text-zenova-ivory">{vi ? cabin.nameVi : cabin.nameEn}</p>
+          </div>
+        </div>
+
+        <div className="px-5 pb-6 pt-2">
+          <DialogHeader className="mb-3">
+            <DialogTitle className="text-left text-lg tracking-[0.02em] text-card-foreground">
+              {vi ? "So sánh chi tiết" : "Compare details"}
+            </DialogTitle>
+            <DialogDescription className="text-left text-xs text-muted-foreground">
+              {vi ? "Thông tin nhanh về hạng phòng này." : "Quick overview for this cabin category."}
+            </DialogDescription>
+          </DialogHeader>
+
+          <dl className="divide-y divide-zenova-ink/10 border-y border-zenova-ink/10 text-sm">
+            {rows.map((r) => (
+              <div key={r.label} className="flex items-baseline justify-between gap-4 py-3">
+                <dt className="text-[10px] uppercase tracking-[0.2em] text-zenova-stone/70">{r.label}</dt>
+                <dd className="text-right text-card-foreground">{r.value}</dd>
+              </div>
+            ))}
+          </dl>
+
+          {cabin.vip ? (
+            <p className="mt-3 text-xs leading-relaxed text-zenova-stone/70">
+              {vi ? AREA_NOTE_VI : AREA_NOTE_EN}
+            </p>
+          ) : null}
+
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Button
+              asChild
+              className="btn-sheen flex-1 rounded-none bg-zenova-gold text-[11px] font-semibold uppercase tracking-[0.18em] text-zenova-ink hover:bg-zenova-gold/90"
+            >
+              <a href={QUOTE_LINK} target="_blank" rel="noopener noreferrer">
+                {vi ? "Liên hệ báo giá" : "Request a quote"}
+              </a>
+            </Button>
+            <Button
+              variant="outline"
+              onClick={onClose}
+              className="flex-1 rounded-none border-zenova-ink/20 text-[11px] font-semibold uppercase tracking-[0.18em] text-card-foreground hover:bg-zenova-ink/5"
+            >
+              {vi ? "Đóng" : "Close"}
+            </Button>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 
 function Spec({ label, value, wide }: { label: string; value: string; wide?: boolean }) {
   return (
