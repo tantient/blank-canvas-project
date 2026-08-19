@@ -238,13 +238,13 @@ export const services: Service[] = [
     taglineVi: "Đường nét du thuyền hiện đại trên vịnh di sản",
     taglineEn: "A modern yacht silhouette on a heritage bay",
     introVi:
-      "Zenova được thiết kế theo ngôn ngữ du thuyền hiện đại: thân tàu thanh mảnh, dải kính liên tục và các tầng boong lùi dần tạo nhịp thị giác. Toàn bộ 40 phòng đều hướng biển, mỗi tầng đều có khu vực ngoài trời riêng.",
+      "Zenova được thiết kế theo ngôn ngữ du thuyền hiện đại: thân tàu thanh mảnh, dải kính liên tục và các tầng boong lùi dần tạo nhịp thị giác. Toàn bộ 44 phòng đều hướng biển, mỗi tầng đều có khu vực ngoài trời riêng.",
     introEn:
-      "Zenova is drawn in a contemporary yacht language: a slender hull, continuous glazing and stepped decks that give the profile its rhythm. All 40 cabins face the sea, and every deck keeps its own outdoor terrace.",
+      "Zenova is drawn in a contemporary yacht language: a slender hull, continuous glazing and stepped decks that give the profile its rhythm. All 44 cabins face the sea, and every deck keeps its own outdoor terrace.",
     highlights: [
       {
-        titleVi: "40 phòng hướng biển",
-        titleEn: "40 sea-facing cabins",
+        titleVi: "44 phòng hướng biển",
+        titleEn: "44 sea-facing cabins",
         descVi: "Mọi phòng đều có tầm nhìn ra vịnh, phần lớn có ban công riêng.",
         descEn: "Every cabin looks onto the bay, most with a private balcony.",
       },

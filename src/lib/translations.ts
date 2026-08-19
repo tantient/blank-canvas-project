@@ -28,7 +28,7 @@ const translations = {
       title: "Tinh hoa nghỉ dưỡng trên vịnh",
       body: "Zenova Cruise mang đến không gian riêng tư, dịch vụ cá nhân hóa và hành trình khám phá vịnh Hạ Long – Lan Hạ theo phong cách 6 sao. Mỗi khoảnh khắc trên tàu đều được thiết kế để bạn tìm lại sự cân bằng và phiêu lưu theo cách của riêng mình.",
       features: [
-        { title: "40 suite hướng biển", desc: "Ban công riêng, tầm nhìn 270°" },
+        { title: "44 suite hướng biển", desc: "Ban công riêng, tầm nhìn 270°" },
         { title: "Ẩm thực 5 sao", desc: "Thực đơn fusion theo ngày" },
         { title: "Spa & wellness", desc: "Liệu trình chăm sóc toàn diện" },
         { title: "Dịch vụ 24/7", desc: "Quản gia riêng trên tàu" },
@@ -152,7 +152,7 @@ const translations = {
       title: "The essence of bay-side luxury",
       body: "Zenova Cruise offers private spaces, personalized service and curated voyages across Ha Long Bay and Lan Ha Bay in true six-star style. Every moment aboard is designed to help you rediscover balance and adventure on your own terms.",
       features: [
-        { title: "40 ocean-view suites", desc: "Private balcony, 270° vistas" },
+        { title: "44 ocean-view suites", desc: "Private balcony, 270° vistas" },
         { title: "Five-star dining", desc: "Daily fusion menus" },
         { title: "Spa & wellness", desc: "Holistic treatments" },
         { title: "24/7 service", desc: "Dedicated onboard butler" },
