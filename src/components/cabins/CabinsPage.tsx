@@ -164,25 +164,30 @@ export function CabinsPage() {
 
           <Reveal className="mt-16">
             <p className="eyebrow mb-5 text-zenova-gold">{vi ? "BẢNG SO SÁNH SUITE" : "SUITE COMPARISON"}</p>
-            <div className="overflow-x-auto rounded-sm border border-zenova-ink/10">
-              <table className="w-full min-w-[640px] border-collapse text-left text-sm">
+            <div className="relative overflow-x-auto rounded-sm border border-zenova-ink/10">
+              <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-6 bg-gradient-to-l from-zenova-ink/8 to-transparent sm:w-10" />
+              <table className="w-full min-w-[520px] border-collapse text-left text-xs sm:min-w-[640px] sm:text-sm">
                 <thead>
                   <tr className="bg-zenova-ink/[0.04] text-[10px] uppercase tracking-[0.2em] text-zenova-stone/70">
-                    <th className="px-5 py-4 font-medium">{vi ? "Hạng phòng" : "Cabin type"}</th>
-                    <th className="px-5 py-4 font-medium">{vi ? AREA_LABEL_VI : AREA_LABEL_EN}</th>
-                    <th className="px-5 py-4 font-medium">{vi ? "Giường" : "Bed"}</th>
-                    <th className="px-5 py-4 font-medium">{vi ? "Sân riêng" : "Private terrace"}</th>
-                    <th className="px-5 py-4 font-medium">{vi ? "Hồ sục ngoài trời" : "Outdoor whirlpool"}</th>
+                    <th className="sticky left-0 z-10 bg-zenova-ink/[0.04] px-3 py-3 font-medium shadow-[2px_0_6px_-2px_rgba(0,0,0,0.08)] sm:px-5 sm:py-4">
+                      {vi ? "Hạng phòng" : "Cabin type"}
+                    </th>
+                    <th className="px-3 py-3 font-medium sm:px-5 sm:py-4">{vi ? AREA_LABEL_VI : AREA_LABEL_EN}</th>
+                    <th className="px-3 py-3 font-medium sm:px-5 sm:py-4">{vi ? "Giường" : "Bed"}</th>
+                    <th className="px-3 py-3 font-medium sm:px-5 sm:py-4">{vi ? "Sân riêng" : "Private terrace"}</th>
+                    <th className="px-3 py-3 font-medium sm:px-5 sm:py-4">{vi ? "Hồ sục ngoài trời" : "Outdoor whirlpool"}</th>
                   </tr>
                 </thead>
                 <tbody>
                   {vipCabins.map((c) => (
                     <tr key={c.id} className="border-t border-zenova-ink/10 text-zenova-ink">
-                      <td className="px-5 py-4">{c.code}</td>
-                      <td className="px-5 py-4">{c.area}</td>
-                      <td className="px-5 py-4">King</td>
-                      <td className="px-5 py-4">{vi ? "Có" : "Included"}</td>
-                      <td className="px-5 py-4">{vi ? "Có" : "Included"}</td>
+                      <td className="sticky left-0 z-10 bg-zenova-ivory px-3 py-3 shadow-[2px_0_6px_-2px_rgba(0,0,0,0.08)] sm:px-5 sm:py-4">
+                        {c.code}
+                      </td>
+                      <td className="px-3 py-3 sm:px-5 sm:py-4">{c.area}</td>
+                      <td className="px-3 py-3 sm:px-5 sm:py-4">King</td>
+                      <td className="px-3 py-3 sm:px-5 sm:py-4">{vi ? "Có" : "Included"}</td>
+                      <td className="px-3 py-3 sm:px-5 sm:py-4">{vi ? "Có" : "Included"}</td>
                     </tr>
                   ))}
                 </tbody>
