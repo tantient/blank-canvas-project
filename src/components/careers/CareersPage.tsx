@@ -104,11 +104,11 @@ export function CareersPage() {
             ))}
           </div>
 
-          <Reveal className="mt-20 rounded-sm border border-zenova-ink/10 bg-white p-8 lg:p-12">
+          <Reveal className="mt-20 rounded-sm border border-border bg-card p-8 lg:p-12">
             <div className="grid gap-10 lg:grid-cols-2">
               <div>
                 <p className="eyebrow mb-3 text-zenova-gold">{tc.ctaLabel}</p>
-                <h2 className="mb-4 text-3xl tracking-[0.02em] text-zenova-ink">{tc.ctaTitle}</h2>
+                <h2 className="mb-4 text-3xl tracking-[0.02em] text-card-foreground">{tc.ctaTitle}</h2>
                 <p className="mb-8 text-zenova-stone/85">{tc.ctaSubtitle}</p>
                 <div className="flex flex-wrap gap-3">
                   <Button
@@ -123,7 +123,7 @@ export function CareersPage() {
                   <Button
                     asChild
                     variant="outline"
-                    className="rounded-none border-zenova-ink/15 px-6 text-[11px] font-semibold uppercase tracking-[0.18em] text-zenova-ink hover:bg-zenova-ink/5"
+                    className="rounded-none border-zenova-ink/15 px-6 text-[11px] font-semibold uppercase tracking-[0.18em] text-card-foreground hover:bg-zenova-ink/5"
                   >
                     <a href={`mailto:${RECRUIT_EMAIL}?subject=${encodeURIComponent(vi ? "Ứng tuyển Zenova" : "Application to Zenova")}`}>
                       <Mail className="mr-2 h-4 w-4" />
@@ -132,24 +132,24 @@ export function CareersPage() {
                   </Button>
                 </div>
               </div>
-              <div className="space-y-6 border-t border-zenova-ink/10 pt-8 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
+              <div className="space-y-6 border-t border-border pt-8 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zenova-ink/5 text-zenova-ink">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted text-card-foreground">
                     <Clock className="h-4 w-4" />
                   </div>
                   <div>
-                    <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-zenova-ink/80">
+                    <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-card-foreground/80">
                       {tc.processLabel}
                     </p>
                     <p className="mt-1 text-zenova-stone/85">{tc.processText}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zenova-ink/5 text-zenova-ink">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted text-card-foreground">
                     <MapPin className="h-4 w-4" />
                   </div>
                   <div>
-                    <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-zenova-ink/80">
+                    <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-card-foreground/80">
                       {tc.locationLabel}
                     </p>
                     <p className="mt-1 text-zenova-stone/85">{tc.locationText}</p>
