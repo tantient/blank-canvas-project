@@ -1,13 +1,13 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { useMemo, useState } from "react";
 
 import { Header } from "@/components/landing/Header";
 import { Footer } from "@/components/landing/Footer";
 import { useLanguage } from "@/components/landing/use-language";
 import { Reveal } from "@/components/landing/Reveal";
 import { galleryImages, type GalleryCategory } from "./gallery-data";
+import { Lightbox } from "./Lightbox";
 
 const CATEGORIES: { id: GalleryCategory | "all"; vi: string; en: string }[] = [
   { id: "all", vi: "Tất cả", en: "All" },
@@ -29,20 +29,6 @@ export function GalleryPage() {
     () => (filter === "all" ? galleryImages : galleryImages.filter((i) => i.category === filter)),
     [filter],
   );
-
-  useEffect(() => {
-    if (active === null) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setActive(null);
-      if (e.key === "ArrowRight") setActive((i) => (i === null ? i : (i + 1) % images.length));
-      if (e.key === "ArrowLeft")
-        setActive((i) => (i === null ? i : (i - 1 + images.length) % images.length));
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [active, images.length]);
-
-  const current = active === null ? null : images[active];
 
   return (
     <div className="min-h-screen bg-zenova-ivory">
@@ -106,50 +92,13 @@ export function GalleryPage() {
         </div>
       </main>
 
-      {current ? (
-        <div
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-zenova-ink/95 p-4"
-          onClick={() => setActive(null)}
-        >
-          <button
-            className="absolute right-5 top-5 text-zenova-ivory/80 hover:text-zenova-ivory"
-            onClick={() => setActive(null)}
-            aria-label="Close"
-          >
-            <X className="h-7 w-7" />
-          </button>
-          <button
-            className="absolute left-4 text-zenova-ivory/70 hover:text-zenova-ivory"
-            onClick={(e) => {
-              e.stopPropagation();
-              setActive((i) => (i === null ? i : (i - 1 + images.length) % images.length));
-            }}
-            aria-label="Previous"
-          >
-            <ChevronLeft className="h-9 w-9" />
-          </button>
-          <figure onClick={(e) => e.stopPropagation()} className="max-h-full">
-            <img
-              src={current.src}
-              alt={lang === "vi" ? current.titleVi : current.titleEn}
-              className="max-h-[80vh] w-auto rounded-sm object-contain"
-            />
-            <figcaption className="mt-4 text-center text-[11px] uppercase tracking-[0.24em] text-zenova-ivory/80">
-              {lang === "vi" ? current.titleVi : current.titleEn}
-            </figcaption>
-          </figure>
-          <button
-            className="absolute right-4 text-zenova-ivory/70 hover:text-zenova-ivory"
-            onClick={(e) => {
-              e.stopPropagation();
-              setActive((i) => (i === null ? i : (i + 1) % images.length));
-            }}
-            aria-label="Next"
-          >
-            <ChevronRight className="h-9 w-9" />
-          </button>
-        </div>
-      ) : null}
+      <Lightbox
+        images={images}
+        index={active}
+        setIndex={(fn) => setActive((i) => fn(i))}
+        close={() => setActive(null)}
+        lang={lang}
+      />
 
       <Footer t={t} />
     </div>
