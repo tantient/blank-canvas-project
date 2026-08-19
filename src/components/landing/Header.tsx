@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { ChevronDown, Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
