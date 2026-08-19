@@ -1,14 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { CabinsPage } from "@/components/cabins/CabinsPage";
-import heroAsset from "@/assets/gallery/zenova-suite-01.jpg.asset.json";
+import { ItinerariesPage } from "@/components/itineraries/ItinerariesPage";
+import heroAsset from "@/assets/gallery/zenova-exterior-02.jpg.asset.json";
 
 const SITE_URL = "https://id-preview--aaae7898-8e56-433d-9dbd-cdc3c97aac11.lovable.app";
-const TITLE = "Phòng nghỉ Zenova Cruise | Suite & cabin hướng vịnh";
+const TITLE = "Hải trình Zenova Cruise | 2N1Đ & 3N2Đ Hạ Long - Lan Hạ";
 const DESC =
-  "Các hạng phòng trên Zenova Cruise: Zenova Suite, Deluxe Bay View và Ocean Cabin - thiết kế hướng vịnh, tiện nghi 6 sao trên vịnh Hạ Long.";
+  "Các hải trình du thuyền 6 sao Zenova: 2 ngày 1 đêm, 3 ngày 2 đêm và chuyến đi ngắn ngắm hoàng hôn giữa vịnh Hạ Long - Lan Hạ.";
 
-export const Route = createFileRoute("/cabins/")({
+export const Route = createFileRoute("/itineraries")({
   head: () => ({
     meta: [
       { title: TITLE },
@@ -21,5 +21,5 @@ export const Route = createFileRoute("/cabins/")({
       { name: "twitter:image", content: `${SITE_URL}${heroAsset.url}` },
     ],
   }),
-  component: CabinsPage,
+  component: ItinerariesPage,
 });

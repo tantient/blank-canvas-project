@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getT, type Lang } from "./translations";
+import { getT, type Lang } from "@/lib/translations";
 
 const STORAGE_KEY = "zenova-lang";
 
