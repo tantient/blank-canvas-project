@@ -141,31 +141,17 @@ export function CabinDetailPage({ cabin }: { cabin: CabinType }) {
 
           <Reveal>
             <p className="eyebrow mb-5 text-zenova-gold">{vi ? "SƠ ĐỒ BỐ TRÍ" : "FLOOR PLAN"}</p>
-            <div className="grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-center">
-              <div className="relative aspect-[4/3] w-full rounded-sm border border-zenova-ink/15 bg-zenova-ink/[0.04] p-2">
-                {detail.layout.map((z) => (
-                  <div
-                    key={z.labelEn}
-                    className="absolute flex items-center justify-center rounded-sm border border-zenova-gold/40 bg-zenova-gold/10 p-2 text-center"
-                    style={{
-                      left: `${z.x}%`,
-                      top: `${z.y}%`,
-                      width: `${z.w}%`,
-                      height: `${z.h}%`,
-                    }}
-                  >
-                    <span className="text-[10px] uppercase tracking-[0.18em] text-zenova-ink">
-                      {vi ? z.labelVi : z.labelEn}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              <p className="text-sm text-zenova-stone/80">
-                {vi
-                  ? "Sơ đồ mang tính minh hoạ tỷ lệ tương đối giữa các khu vực trong phòng; bố trí thực tế có thể thay đổi theo vị trí phòng trên tàu."
-                  : "The plan illustrates the relative proportions of each area; the actual layout may vary depending on the cabin's position aboard."}
-              </p>
-            </div>
+            <DeckPlanProvider>
+              <DeckPlan
+                zones={detail.layout}
+                vi={vi}
+                hint={
+                  vi
+                    ? "Sơ đồ mang tính minh hoạ tỷ lệ tương đối giữa các khu vực trong phòng; bố trí thực tế có thể thay đổi theo vị trí phòng trên tàu."
+                    : "The plan illustrates the relative proportions of each area; the actual layout may vary depending on the cabin's position aboard."
+                }
+              />
+            </DeckPlanProvider>
           </Reveal>
 
           <Reveal>
