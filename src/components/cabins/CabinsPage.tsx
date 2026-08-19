@@ -150,10 +150,10 @@ export function CabinsPage() {
                       </p>
                     ) : null}
 
-                    <div className="mt-auto flex flex-wrap items-center gap-5">
+                    <div className="mt-auto flex flex-wrap items-center gap-3">
                       <Button
                         asChild
-                        className="btn-sheen rounded-none bg-zenova-gold px-7 text-[11px] font-semibold uppercase tracking-[0.18em] text-zenova-ink hover:bg-zenova-gold/90"
+                        className="btn-sheen rounded-none bg-zenova-gold px-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-zenova-ink hover:bg-zenova-gold/90"
                       >
                         <a href={QUOTE_LINK} target="_blank" rel="noopener noreferrer">
                           {vi ? "Liên hệ báo giá" : "Request a quote"}
@@ -166,7 +166,17 @@ export function CabinsPage() {
                       >
                         {vi ? "Xem chi tiết" : "View details"}
                       </Link>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setCompareCabin(cabin)}
+                        className="rounded-none border-zenova-gold/50 text-[11px] font-semibold uppercase tracking-[0.18em] text-card-foreground hover:border-zenova-gold hover:bg-zenova-gold/10 hover:text-zenova-gold"
+                      >
+                        {vi ? "So sánh chi tiết" : "Compare details"}
+                      </Button>
                     </div>
+
                   </div>
                 </article>
               </Reveal>
