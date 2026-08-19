@@ -69,23 +69,23 @@ export function Header({ lang, setLang, t }: HeaderProps) {
           />
         </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex">
+        <nav className="hidden items-center gap-4 xl:gap-6 xl:flex">
           <Link
             to="/itineraries"
-            className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors ${linkClasses}`}
+            className={`whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.14em] transition-colors ${linkClasses}`}
           >
             {t.nav.itineraries}
           </Link>
           <Link
             to="/cabins"
-            className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors ${linkClasses}`}
+            className={`whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.14em] transition-colors ${linkClasses}`}
           >
             {t.nav.cabins}
           </Link>
 
           <div className="group relative">
             <button
-              className={`flex items-center gap-1 text-[11px] font-medium uppercase tracking-[0.22em] transition-colors ${linkClasses}`}
+              className={`flex items-center gap-1 whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.14em] transition-colors ${linkClasses}`}
             >
               {t.nav.services}
               <ChevronDown className="h-3.5 w-3.5" />
@@ -96,7 +96,7 @@ export function Header({ lang, setLang, t }: HeaderProps) {
                   <Link
                     key={link.href}
                     to={link.href}
-                    className="block px-5 py-2.5 text-[12px] tracking-wide text-zenova-ink/80 transition-colors hover:bg-zenova-ink/5 hover:text-zenova-ink"
+                    className="block whitespace-nowrap px-5 py-2.5 text-[12px] tracking-wide text-zenova-ink/80 transition-colors hover:bg-zenova-ink/5 hover:text-zenova-ink"
                   >
                     {link.label}
                   </Link>
@@ -107,31 +107,31 @@ export function Header({ lang, setLang, t }: HeaderProps) {
 
           <Link
             to="/gallery"
-            className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors ${linkClasses}`}
+            className={`whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.14em] transition-colors ${linkClasses}`}
           >
             {t.nav.gallery}
           </Link>
           <Link
             to="/offers"
-            className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors ${linkClasses}`}
+            className={`whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.14em] transition-colors ${linkClasses}`}
           >
             {t.nav.offers}
           </Link>
           <Link
             to="/careers"
-            className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors ${linkClasses}`}
+            className={`whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.14em] transition-colors ${linkClasses}`}
           >
             {t.nav.careers}
           </Link>
           <Link
             to="/about"
-            className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors ${linkClasses}`}
+            className={`whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.14em] transition-colors ${linkClasses}`}
           >
             {t.nav.about}
           </Link>
           <Link
             to="/contact"
-            className={`text-[11px] font-medium uppercase tracking-[0.22em] transition-colors ${linkClasses}`}
+            className={`whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.14em] transition-colors ${linkClasses}`}
           >
             {t.nav.contact}
           </Link>
@@ -183,7 +183,7 @@ export function Header({ lang, setLang, t }: HeaderProps) {
         </div>
 
         <button
-          className="md:hidden"
+          className="xl:hidden"
           onClick={() => setMobileOpen((s) => !s)}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
         >
@@ -196,7 +196,7 @@ export function Header({ lang, setLang, t }: HeaderProps) {
       </div>
 
       {mobileOpen && (
-        <div className="border-t border-zenova-ink/10 bg-zenova-ivory px-6 pb-6 md:hidden">
+        <div className="border-t border-zenova-ink/10 bg-zenova-ivory px-6 pb-6 xl:hidden">
           <nav className="flex flex-col gap-4 pt-4">
             {navLinks.map((link) => (
               <Link
