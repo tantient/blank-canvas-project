@@ -73,8 +73,10 @@ Plan: Thư viện ảnh + các trang khu vực chi tiết (Nhà hàng, Giải tr
 - Dữ liệu hạng phòng để trong một file cấu hình riêng (mảng object), dễ thêm hạng phòng và dễ thay ảnh phối cảnh bằng ảnh thực sau này.
 - og:image của trang là ảnh phòng đẹp nhất; nếu sau này tách trang chi tiết cho từng hạng phòng thì cấu trúc dữ liệu này dùng lại được ngay.
 
-## Câu hỏi cần quyết định
-- Đường dẫn trang khu vực dùng tiếng Việt (`/cabins`, `/dining`) hay tiếng Anh (`/cabins`, `/dining`)?
-- Du thuyền có bao nhiêu hạng phòng và tên gọi từng hạng là gì? Nếu chưa chốt, tôi sẽ tạm nhóm theo ảnh phối cảnh và bạn chỉnh lại sau.
-- Có cần ghi chú "Hình ảnh phối cảnh" trên ảnh/đầu trang hay không?
+## Quyết định đã chốt
+- Đường dẫn toàn bộ dùng tiếng Anh: `/gallery`, `/cabins`, `/dining`, `/entertainment`, `/public-spaces`, `/exterior`.
+- Hạng phòng tạm nhóm theo ảnh phối cảnh trong PDF (đặt tên tạm dạng Suite / Deluxe / Standard theo quy mô không gian nhìn thấy trong ảnh), bạn chỉnh tên và thông số sau.
+- Không ghi chú "hình ảnh phối cảnh" trên ảnh hay đầu trang; bỏ luôn trường `isRender`.
+- Nội dung hiển thị vẫn song ngữ VI/EN theo cơ chế `use-language` hiện có; chỉ URL là tiếng Anh.
+
 
