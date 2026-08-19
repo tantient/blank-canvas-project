@@ -7,13 +7,21 @@ import { Footer } from "@/components/landing/Footer";
 import { useLanguage } from "@/components/landing/use-language";
 import { Reveal } from "@/components/landing/Reveal";
 import { Button } from "@/components/ui/button";
-import { cabinTypes, TOTAL_CABINS } from "./cabins-data";
+import {
+  cabinTypes,
+  TOTAL_CABINS,
+  AREA_LABEL_VI,
+  AREA_LABEL_EN,
+  AREA_NOTE_VI,
+  AREA_NOTE_EN,
+} from "./cabins-data";
 
 const QUOTE_LINK = "https://zalo.me/";
 
 export function CabinsPage() {
   const { lang, setLang, t } = useLanguage();
   const vi = lang === "vi";
+  const vipCabins = cabinTypes.filter((c) => c.vip);
 
   return (
     <div className="min-h-screen bg-zenova-ivory">
@@ -46,7 +54,7 @@ export function CabinsPage() {
           <Reveal className="mb-14 max-w-2xl">
             <p className="eyebrow mb-5 text-zenova-gold">{vi ? "HẠNG PHÒNG" : "CABIN CATEGORIES"}</p>
             <h2 className="mb-4 text-3xl tracking-[0.02em] text-zenova-ink sm:text-4xl">
-              {vi ? `Bốn hạng phòng, ${TOTAL_CABINS} lựa chọn` : `Four categories, ${TOTAL_CABINS} cabins`}
+              {vi ? `Các hạng phòng, ${TOTAL_CABINS} lựa chọn` : `Cabin categories, ${TOTAL_CABINS} cabins`}
             </h2>
             <p className="text-zenova-stone/85">
               {vi
@@ -73,6 +81,11 @@ export function CabinsPage() {
                   </Link>
 
                   <div className="flex flex-1 flex-col p-7">
+                    {cabin.code ? (
+                      <p className="mb-2 text-[10px] uppercase tracking-[0.24em] text-zenova-gold">
+                        {cabin.code}
+                      </p>
+                    ) : null}
                     <h3 className="mb-3 text-2xl tracking-[0.02em] text-card-foreground">
                       {vi ? cabin.nameVi : cabin.nameEn}
                     </h3>
@@ -81,7 +94,24 @@ export function CabinsPage() {
                     </p>
 
                     <dl className="mb-6 grid grid-cols-2 gap-x-6 gap-y-4 border-y border-zenova-ink/10 py-5">
-                      <Spec label={vi ? "Diện tích" : "Area"} value={cabin.area} />
+                      <Spec
+                        label={
+                          cabin.vip
+                            ? vi
+                              ? AREA_LABEL_VI
+                              : AREA_LABEL_EN
+                            : vi
+                              ? "Diện tích"
+                              : "Area"
+                        }
+                        value={
+                          cabin.vip
+                            ? vi
+                              ? `${cabin.area} tổng diện tích riêng`
+                              : `${cabin.area} Total Private Area`
+                            : cabin.area
+                        }
+                      />
                       <Spec
                         label={vi ? "Số phòng" : "Cabins"}
                         value={
@@ -101,6 +131,12 @@ export function CabinsPage() {
                         wide
                       />
                     </dl>
+
+                    {cabin.vip ? (
+                      <p className="-mt-3 mb-6 text-xs leading-relaxed text-zenova-stone/70">
+                        {vi ? AREA_NOTE_VI : AREA_NOTE_EN}
+                      </p>
+                    ) : null}
 
                     <div className="mt-auto flex flex-wrap items-center gap-5">
                       <Button
@@ -124,6 +160,38 @@ export function CabinsPage() {
               </Reveal>
             ))}
           </div>
+
+
+          <Reveal className="mt-16">
+            <p className="eyebrow mb-5 text-zenova-gold">{vi ? "BẢNG SO SÁNH SUITE" : "SUITE COMPARISON"}</p>
+            <div className="overflow-x-auto rounded-sm border border-zenova-ink/10">
+              <table className="w-full min-w-[640px] border-collapse text-left text-sm">
+                <thead>
+                  <tr className="bg-zenova-ink/[0.04] text-[10px] uppercase tracking-[0.2em] text-zenova-stone/70">
+                    <th className="px-5 py-4 font-medium">{vi ? "Hạng phòng" : "Cabin type"}</th>
+                    <th className="px-5 py-4 font-medium">{vi ? AREA_LABEL_VI : AREA_LABEL_EN}</th>
+                    <th className="px-5 py-4 font-medium">{vi ? "Giường" : "Bed"}</th>
+                    <th className="px-5 py-4 font-medium">{vi ? "Sân riêng" : "Private terrace"}</th>
+                    <th className="px-5 py-4 font-medium">{vi ? "Hồ sục ngoài trời" : "Outdoor whirlpool"}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {vipCabins.map((c) => (
+                    <tr key={c.id} className="border-t border-zenova-ink/10 text-zenova-ink">
+                      <td className="px-5 py-4">{c.code}</td>
+                      <td className="px-5 py-4">{c.area}</td>
+                      <td className="px-5 py-4">King</td>
+                      <td className="px-5 py-4">{vi ? "Có" : "Included"}</td>
+                      <td className="px-5 py-4">{vi ? "Có" : "Included"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-4 text-xs leading-relaxed text-zenova-stone/70">
+              {vi ? AREA_NOTE_VI : AREA_NOTE_EN}
+            </p>
+          </Reveal>
 
           <Reveal className="mt-8 rounded-sm border border-zenova-gold/30 bg-zenova-gold/5 p-6">
             <p className="text-sm leading-relaxed text-zenova-stone/85">

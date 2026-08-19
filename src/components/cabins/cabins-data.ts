@@ -13,8 +13,19 @@ import corridor from "@/assets/gallery/zenova-corridor.jpg.asset.json";
 
 export const TOTAL_CABINS = 44;
 
+export const AREA_LABEL_VI = "TỔNG DIỆN TÍCH RIÊNG";
+export const AREA_LABEL_EN = "TOTAL PRIVATE AREA";
+export const AREA_NOTE_VI =
+  "Diện tích công bố là tổng diện tích riêng của suite, bao gồm không gian trong nhà và khu vực ngoài trời riêng.";
+export const AREA_NOTE_EN =
+  "Area shown is the total private area, including indoor accommodation and private outdoor space.";
+
 export interface CabinType {
   id: string;
+  /** Mã kỹ thuật (chỉ áp dụng cho các hạng VIP) */
+  code?: string;
+  /** Hạng VIP: diện tích công bố là tổng diện tích riêng */
+  vip?: boolean;
   nameVi: string;
   nameEn: string;
   descVi: string;
@@ -39,12 +50,14 @@ const BED_EN = "1 double bed or 2 twin beds";
 export const cabinTypes: CabinType[] = [
   {
     id: "owners-suite",
+    code: "Type 1.1A/1.1B",
+    vip: true,
     nameVi: "Owner's Suite",
     nameEn: "Owner's Suite",
     descVi:
-      "Hạng phòng lớn nhất trên tàu với phòng khách riêng, cửa kính panorama ôm trọn vịnh và khu tắm thư giãn tách biệt. Không gian dành cho gia đình hoặc cặp đôi muốn sự riêng tư tuyệt đối.",
+      "Không gian nghỉ dưỡng kết hợp phòng ngủ, khu tiếp khách, sân riêng lớn phía đuôi tàu và hồ sục ngoài trời.",
     descEn:
-      "The largest accommodation aboard, with a separate living room, panoramic glazing framing the bay and a dedicated bathing area. Designed for families or couples seeking absolute privacy.",
+      "Combining an elegant bedroom and lounge with an expansive private aft terrace and outdoor whirlpool.",
     area: "80 m²",
     view: "Panorama 180°",
     roomCount: 2,
@@ -54,49 +67,84 @@ export const cabinTypes: CabinType[] = [
     hero: suite01.url,
     gallery: [suite02.url, bath02.url],
     amenitiesVi: [
-      "Phòng khách riêng",
-      "Bồn tắm nhìn ra vịnh",
-      "Ban công riêng",
-      "Quản gia riêng 24/7",
-      "Minibar cao cấp",
+      "Giường King",
+      "Phòng ngủ và khu tiếp khách",
+      "Sân riêng lớn phía đuôi tàu",
+      "Hồ sục ngoài trời",
+      "Tầm nhìn panorama ra vịnh",
     ],
     amenitiesEn: [
-      "Private living room",
-      "Bay-view bathtub",
-      "Private balcony",
-      "24/7 private butler",
-      "Premium minibar",
+      "King bed",
+      "Bedroom and lounge",
+      "Expansive private aft terrace",
+      "Outdoor whirlpool",
+      "Panoramic bay views",
     ],
   },
   {
     id: "grand-suite",
+    code: "Type 1A/1B",
+    vip: true,
     nameVi: "Grand Suite",
     nameEn: "Grand Suite",
     descVi:
-      "Không gian rộng rãi với khu tiếp khách nhỏ, vách kính cao hết trần hướng thẳng ra vịnh và phòng tắm riêng biệt. Cân bằng giữa sự sang trọng và cảm giác ấm cúng.",
+      "Phòng ngủ sang trọng với khu tiếp khách, sân riêng phía đuôi tàu và hồ sục ngoài trời.",
     descEn:
-      "A generous layout with a small lounge corner, full-height glazing facing the bay and a separate bathroom. A balance of luxury and intimacy.",
-    area: "58 – 62 m²",
+      "Featuring a refined bedroom and lounge, a private aft terrace, and an outdoor whirlpool.",
+    area: "62 m²",
     view: "Hướng vịnh / Bay view",
-    roomCount: 4,
+    roomCount: 2,
     maxGuests: 4,
     bedVi: BED_VI,
     bedEn: BED_EN,
     hero: suite03.url,
     gallery: [suite02.url, bath02.url],
     amenitiesVi: [
-      "Khu tiếp khách riêng",
-      "Cửa kính panorama",
-      "Phòng tắm đá tự nhiên",
-      "Ghế thư giãn bên cửa sổ",
-      "Minibar",
+      "Giường King",
+      "Phòng ngủ và khu tiếp khách",
+      "Sân riêng phía đuôi tàu",
+      "Hồ sục ngoài trời",
+      "Tầm nhìn panorama ra vịnh",
     ],
     amenitiesEn: [
-      "Private lounge corner",
-      "Panoramic glazing",
-      "Natural stone bathroom",
-      "Reading chair by the window",
-      "Minibar",
+      "King bed",
+      "Bedroom and seating area",
+      "Private aft terrace",
+      "Outdoor whirlpool",
+      "Panoramic bay views",
+    ],
+  },
+  {
+    id: "grand-suite-corner",
+    code: "Type 1.2A/1.2B",
+    vip: true,
+    nameVi: "Grand Suite",
+    nameEn: "Grand Suite",
+    descVi:
+      "Không gian nghỉ dưỡng riêng tư tại góc tàu, gồm phòng ngủ, khu tiếp khách, sân riêng và hồ sục ngoài trời.",
+    descEn:
+      "A private corner retreat featuring a comfortable bedroom and lounge, an aft terrace, and an outdoor whirlpool.",
+    area: "58 m²",
+    view: "Hướng vịnh / Bay view",
+    roomCount: 2,
+    maxGuests: 4,
+    bedVi: BED_VI,
+    bedEn: BED_EN,
+    hero: suite02.url,
+    gallery: [suite03.url, bath02.url],
+    amenitiesVi: [
+      "Giường King",
+      "Phòng ngủ và khu tiếp khách",
+      "Sân riêng tại góc tàu",
+      "Hồ sục ngoài trời",
+      "Tầm nhìn panorama ra vịnh",
+    ],
+    amenitiesEn: [
+      "King bed",
+      "Bedroom and seating area",
+      "Private corner terrace",
+      "Outdoor whirlpool",
+      "Panoramic bay views",
     ],
   },
   {
@@ -187,22 +235,22 @@ export const cabinDetails: Record<string, CabinDetail> = {
     capacityEn: "Up to 4 guests",
     bedVi: BED_VI,
     bedEn: BED_EN,
-    deckVi: "Tầng cao – khu vực riêng tư",
-    deckEn: "Upper deck – private wing",
+    deckVi: "Phía đuôi tàu – khu vực riêng tư",
+    deckEn: "Aft – private wing",
     highlightsVi: [
-      "Phòng khách tách biệt với khu ngủ, phù hợp tiếp khách hoặc làm việc.",
-      "Bồn tắm đặt sát cửa kính, ngắm vịnh khi hoàng hôn buông.",
-      "Ban công riêng với ghế nằm và bàn trà ngoài trời.",
+      "Phòng ngủ và khu tiếp khách tách biệt, phù hợp nghỉ ngơi lẫn tiếp khách.",
+      "Sân riêng lớn phía đuôi tàu với hồ sục ngoài trời.",
+      "Tầm nhìn panorama ra vịnh suốt cả ngày.",
     ],
     highlightsEn: [
-      "A living room fully separated from the sleeping area, ideal for hosting or working.",
-      "A bathtub set against the glass wall, facing the bay at sunset.",
-      "Private balcony with loungers and an outdoor tea table.",
+      "A bedroom and lounge set apart, suited to both resting and hosting.",
+      "An expansive private aft terrace with an outdoor whirlpool.",
+      "Panoramic bay views throughout the day.",
     ],
     layout: [
-      { labelVi: "Ban công", labelEn: "Balcony", x: 2, y: 2, w: 96, h: 18 },
-      { labelVi: "Phòng khách", labelEn: "Living room", x: 2, y: 24, w: 54, h: 40 },
-      { labelVi: "Phòng ngủ", labelEn: "Bedroom", x: 58, y: 24, w: 40, h: 40 },
+      { labelVi: "Sân riêng & hồ sục", labelEn: "Private aft terrace & whirlpool", x: 2, y: 2, w: 96, h: 22 },
+      { labelVi: "Khu tiếp khách", labelEn: "Lounge", x: 2, y: 26, w: 54, h: 38 },
+      { labelVi: "Phòng ngủ", labelEn: "Bedroom", x: 58, y: 26, w: 40, h: 38 },
       { labelVi: "Phòng tắm", labelEn: "Bathroom", x: 2, y: 68, w: 40, h: 30 },
       { labelVi: "Tủ đồ & lối vào", labelEn: "Wardrobe & entry", x: 44, y: 68, w: 54, h: 30 },
     ],
@@ -212,22 +260,47 @@ export const cabinDetails: Record<string, CabinDetail> = {
     capacityEn: "Up to 4 guests",
     bedVi: BED_VI,
     bedEn: BED_EN,
-    deckVi: "Tầng giữa – hướng vịnh",
-    deckEn: "Mid deck – bay facing",
+    deckVi: "Phía đuôi tàu – hướng vịnh",
+    deckEn: "Aft – bay facing",
     highlightsVi: [
-      "Vách kính cao hết trần đưa toàn bộ mặt vịnh vào phòng.",
-      "Khu tiếp khách nhỏ tách khỏi khu ngủ.",
-      "Phòng tắm ốp đá tự nhiên với vòi sen áp lực cao.",
+      "Phòng ngủ và khu tiếp khách liền mạch, mở thẳng ra sân riêng.",
+      "Sân riêng phía đuôi tàu với hồ sục ngoài trời.",
+      "Tầm nhìn panorama ra vịnh từ trong phòng và ngoài sân.",
     ],
     highlightsEn: [
-      "A full-height glass wall brings the entire bay into the room.",
-      "A small lounge corner set apart from the sleeping area.",
-      "Natural stone bathroom with a high-pressure rain shower.",
+      "A bedroom and seating area flowing straight onto the private terrace.",
+      "Private aft terrace with an outdoor whirlpool.",
+      "Panoramic bay views from both indoors and the terrace.",
     ],
     layout: [
-      { labelVi: "Ban công", labelEn: "Balcony", x: 2, y: 2, w: 96, h: 16 },
-      { labelVi: "Khu ngủ", labelEn: "Sleeping area", x: 2, y: 22, w: 60, h: 46 },
-      { labelVi: "Khu tiếp khách", labelEn: "Lounge corner", x: 64, y: 22, w: 34, h: 46 },
+      { labelVi: "Sân riêng & hồ sục", labelEn: "Private terrace & whirlpool", x: 2, y: 2, w: 96, h: 24 },
+      { labelVi: "Khu ngủ", labelEn: "Sleeping area", x: 2, y: 30, w: 60, h: 38 },
+      { labelVi: "Khu tiếp khách", labelEn: "Seating area", x: 64, y: 30, w: 34, h: 38 },
+      { labelVi: "Phòng tắm", labelEn: "Bathroom", x: 2, y: 72, w: 46, h: 26 },
+      { labelVi: "Lối vào", labelEn: "Entry", x: 50, y: 72, w: 48, h: 26 },
+    ],
+  },
+  "grand-suite-corner": {
+    capacityVi: "Tối đa 4 khách",
+    capacityEn: "Up to 4 guests",
+    bedVi: BED_VI,
+    bedEn: BED_EN,
+    deckVi: "Góc tàu – hướng vịnh",
+    deckEn: "Corner position – bay facing",
+    highlightsVi: [
+      "Vị trí góc tàu mang lại sự riêng tư và tầm nhìn hai hướng.",
+      "Sân riêng với hồ sục ngoài trời.",
+      "Phòng ngủ liền khu tiếp khách, bố cục thoáng và ấm cúng.",
+    ],
+    highlightsEn: [
+      "A corner position offering privacy and dual-aspect views.",
+      "Private terrace with an outdoor whirlpool.",
+      "Bedroom adjoining a seating area in an open, intimate layout.",
+    ],
+    layout: [
+      { labelVi: "Sân riêng & hồ sục", labelEn: "Private terrace & whirlpool", x: 2, y: 2, w: 96, h: 22 },
+      { labelVi: "Khu ngủ", labelEn: "Sleeping area", x: 2, y: 28, w: 58, h: 40 },
+      { labelVi: "Khu tiếp khách", labelEn: "Seating area", x: 62, y: 28, w: 36, h: 40 },
       { labelVi: "Phòng tắm", labelEn: "Bathroom", x: 2, y: 72, w: 46, h: 26 },
       { labelVi: "Lối vào", labelEn: "Entry", x: 50, y: 72, w: 48, h: 26 },
     ],

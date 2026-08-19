@@ -7,7 +7,15 @@ import { Footer } from "@/components/landing/Footer";
 import { useLanguage } from "@/components/landing/use-language";
 import { Reveal } from "@/components/landing/Reveal";
 import { Button } from "@/components/ui/button";
-import { cabinTypes, cabinDetails, type CabinType } from "./cabins-data";
+import {
+  cabinTypes,
+  cabinDetails,
+  AREA_LABEL_VI,
+  AREA_LABEL_EN,
+  AREA_NOTE_VI,
+  AREA_NOTE_EN,
+  type CabinType,
+} from "./cabins-data";
 
 const QUOTE_LINK = "https://zalo.me/";
 
@@ -18,7 +26,14 @@ export function CabinDetailPage({ cabin }: { cabin: CabinType }) {
   const others = cabinTypes.filter((c) => c.id !== cabin.id);
 
   const specs = [
-    { label: vi ? "Diện tích" : "Area", value: cabin.area },
+    {
+      label: cabin.vip ? (vi ? AREA_LABEL_VI : AREA_LABEL_EN) : vi ? "Diện tích" : "Area",
+      value: cabin.vip
+        ? vi
+          ? `${cabin.area} tổng diện tích riêng`
+          : `${cabin.area} Total Private Area`
+        : cabin.area,
+    },
     { label: vi ? "Tầm nhìn" : "View", value: cabin.view },
     {
       label: vi ? "Số phòng" : "Cabins",
@@ -52,9 +67,24 @@ export function CabinDetailPage({ cabin }: { cabin: CabinType }) {
               <h1 className="max-w-3xl text-4xl tracking-[0.02em] text-zenova-ivory sm:text-5xl">
                 {vi ? cabin.nameVi : cabin.nameEn}
               </h1>
-              <p className="mt-4 max-w-xl text-zenova-ivory/85">
-                {cabin.area} · {cabin.view}
+              {cabin.code ? (
+                <p className="mt-3 text-[11px] uppercase tracking-[0.24em] text-zenova-gold">
+                  {cabin.code}
+                </p>
+              ) : null}
+              <p className="mt-3 max-w-xl text-zenova-ivory/85">
+                {cabin.vip
+                  ? vi
+                    ? `${cabin.area} tổng diện tích riêng`
+                    : `${cabin.area} Total Private Area`
+                  : cabin.area}{" "}
+                · {cabin.view}
               </p>
+              {cabin.vip ? (
+                <p className="mt-2 max-w-xl text-xs leading-relaxed text-zenova-ivory/65">
+                  {vi ? AREA_NOTE_VI : AREA_NOTE_EN}
+                </p>
+              ) : null}
             </div>
           </div>
         </section>
@@ -87,6 +117,12 @@ export function CabinDetailPage({ cabin }: { cabin: CabinType }) {
               ))}
             </dl>
           </Reveal>
+
+          {cabin.vip ? (
+            <p className="-mt-14 text-xs leading-relaxed text-zenova-stone/70">
+              {vi ? AREA_NOTE_VI : AREA_NOTE_EN}
+            </p>
+          ) : null}
 
           <Reveal>
             <p className="eyebrow mb-5 text-zenova-gold">{vi ? "TIỆN NGHI" : "AMENITIES"}</p>
@@ -191,6 +227,7 @@ export function CabinDetailPage({ cabin }: { cabin: CabinType }) {
                       {vi ? o.nameVi : o.nameEn}
                     </p>
                     <p className="text-sm text-zenova-stone/75">
+                      {o.code ? `${o.code} · ` : ""}
                       {o.area} · {o.view}
                     </p>
                   </div>
