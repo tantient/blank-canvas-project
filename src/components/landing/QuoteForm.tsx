@@ -43,20 +43,25 @@ export function QuoteForm({ t }: QuoteFormProps) {
   };
 
   return (
-    <section id="quote" className="bg-zenova-ink py-24 lg:py-32">
-      <div className="mx-auto max-w-3xl px-6 lg:px-8">
-        <Reveal className="mb-12 text-center text-zenova-ivory">
-          <p className="eyebrow mb-6 justify-center text-zenova-gold">{t.form.label}</p>
-          <h2 className="mb-4 text-4xl tracking-[0.02em] sm:text-5xl">{t.form.title}</h2>
+    <section id="quote" className="relative bg-zenova-ink">
+      {/* Chuyển tông mềm từ khối sáng phía trên xuống nền navy */}
+      <div
+        aria-hidden
+        className="h-20 w-full bg-gradient-to-b from-zenova-ivory to-zenova-ink lg:h-28"
+      />
+      <div className="mx-auto max-w-3xl px-6 pb-4 lg:px-8">
+        <Reveal className="mb-10 text-center text-zenova-ivory">
+          <p className="eyebrow mb-5 justify-center text-zenova-gold">{t.form.label}</p>
+          <h2 className="mb-3 text-4xl tracking-[0.02em] sm:text-5xl">{t.form.title}</h2>
           <p className="text-zenova-ivory/70">{t.form.subtitle}</p>
         </Reveal>
 
         <Reveal
           as="form"
           onSubmit={handleSubmit}
-          className="border border-white/10 bg-white/[0.04] p-7 backdrop-blur-sm sm:p-12"
+          className="mx-auto w-full border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm sm:p-10"
         >
-          <div className="grid gap-8 sm:grid-cols-2">
+          <div className="grid gap-7 sm:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="name" className="text-[11px] uppercase tracking-[0.24em] text-zenova-ivory/60">
                 {t.form.name}
@@ -121,13 +126,18 @@ export function QuoteForm({ t }: QuoteFormProps) {
           </div>
           <Button
             type="submit"
-            className="btn-sheen mt-12 w-full rounded-none bg-zenova-gold text-xs font-semibold uppercase tracking-[0.2em] text-zenova-ink hover:bg-zenova-gold/90"
+            className="btn-sheen mt-10 w-full rounded-none bg-zenova-gold text-xs font-semibold uppercase tracking-[0.2em] text-zenova-ink hover:bg-zenova-gold/90"
             size="lg"
           >
             {t.form.submit}
           </Button>
         </Reveal>
       </div>
+      {/* Chuyển tông mềm từ nền navy xuống footer sáng */}
+      <div
+        aria-hidden
+        className="mt-4 h-20 w-full bg-gradient-to-b from-zenova-ink to-zenova-ivory lg:h-28"
+      />
     </section>
   );
 }
