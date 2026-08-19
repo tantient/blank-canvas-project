@@ -1,6 +1,6 @@
 import { Anchor, ChefHat, ConciergeBell, Waves, type LucideIcon } from "lucide-react";
 
-import { Reveal } from "./Reveal";
+import { Reveal } from "@/components/landing/Reveal";
 
 interface AboutProps {
   t: {

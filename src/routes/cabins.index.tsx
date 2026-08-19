@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { CabinsPage } from "@/components/gallery/CabinsPage";
+import { CabinsPage } from "@/components/cabins/CabinsPage";
 import heroAsset from "@/assets/gallery/zenova-suite-01.jpg.asset.json";
 
 const SITE_URL = "https://id-preview--aaae7898-8e56-433d-9dbd-cdc3c97aac11.lovable.app";
