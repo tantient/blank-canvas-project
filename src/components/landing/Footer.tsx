@@ -5,7 +5,7 @@ import { ZenovaLogo } from "./ZenovaLogo";
 
 interface FooterProps {
   t: {
-    footer: { rights: string; tagline: string; contact: string[] };
+    footer: { rights: string; tagline: string; quickLinks: string; contact: string[] };
     nav: {
       about: string;
       careers: string;
@@ -57,15 +57,15 @@ export function Footer({ t }: FooterProps) {
           {/* Quick links */}
           <nav className="flex min-w-0 flex-col items-center gap-3 md:items-start md:text-left">
             <p className="mb-1 text-[11px] uppercase tracking-[0.28em] text-zenova-stone/60">
-              Zenova
+              {t.footer.quickLinks}
             </p>
-            <div className="grid w-full max-w-xs grid-cols-2 gap-x-4 gap-y-1 md:flex md:max-w-none md:flex-col md:gap-0">
+            <div className="grid w-full max-w-xs grid-cols-2 gap-x-4 md:flex md:max-w-none md:flex-col md:gap-0">
               {quickLinks.map((link) => (
                 <Link
                   key={link.label}
                   to={link.to}
                   {...(link.params ? { params: link.params } : {})}
-                  className="min-w-0 py-2 text-sm tracking-wide text-zenova-stone/85 transition-colors hover:text-zenova-gold md:px-0"
+                  className="flex min-h-11 min-w-0 items-center justify-center py-2 text-sm tracking-wide text-zenova-stone/85 transition-colors hover:text-zenova-gold md:min-h-0 md:justify-start md:px-0 md:py-1"
                 >
                   <span className="block truncate">{link.label}</span>
                 </Link>
@@ -81,7 +81,7 @@ export function Footer({ t }: FooterProps) {
             {t.footer.contact.map((item) => (
               <span
                 key={item}
-                className="min-w-0 py-1 text-sm tracking-wide text-zenova-stone/85"
+                className="flex min-h-11 min-w-0 items-center justify-center py-1 text-sm tracking-wide text-zenova-stone/85 md:min-h-0 md:justify-start"
               >
                 {item}
               </span>
@@ -94,7 +94,7 @@ export function Footer({ t }: FooterProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-zenova-gold/30 text-zenova-stone/80 transition-colors hover:border-zenova-gold hover:text-zenova-gold md:h-9 md:w-9"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-zenova-gold/30 text-zenova-stone/80 transition-colors hover:border-zenova-gold hover:text-zenova-gold md:h-9 md:w-9"
                 >
                   <Icon className="h-4 w-4" strokeWidth={1.5} />
                 </a>
