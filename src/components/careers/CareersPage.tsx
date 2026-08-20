@@ -93,7 +93,7 @@ export function CareersPage() {
                     variant="outline"
                     className="rounded-none border-zenova-ink/15 px-6 text-[11px] font-semibold uppercase tracking-[0.18em] text-card-foreground hover:bg-zenova-ink/5"
                   >
-                    <a href={buildEmailLink(RECRUIT_EMAIL)}>
+                    <a href={buildEmailLink(RECRUIT_EMAIL, lang)}>
                       <Mail className="mr-2 h-4 w-4" />
                       {tc.sendEmail}
                     </a>

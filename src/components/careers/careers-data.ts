@@ -1,3 +1,4 @@
+import type { Lang } from "@/lib/translations";
 import heroImg from "@/assets/gallery/zenova-exterior-01.jpg.asset.json";
 
 export interface JobPosition {
@@ -67,7 +68,7 @@ export function buildZaloLink(phone: string): string {
   return `https://zalo.me/${phone}`;
 }
 
-export function buildEmailLink(email: string): string {
-  const subject = "Application to Zenova";
+export function buildEmailLink(email: string, lang: Lang = "en"): string {
+  const subject = lang === "vi" ? "Ứng tuyển Zenova" : "Application to Zenova";
   return `mailto:${email}?subject=${encodeURIComponent(subject)}`;
 }
