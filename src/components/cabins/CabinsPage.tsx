@@ -323,6 +323,7 @@ function CabinCompareDialog({
       const t = setTimeout(() => setLoading(false), 420);
       return () => clearTimeout(t);
     }
+    return undefined;
   }, [cabin]);
 
   if (!shown) return null;
