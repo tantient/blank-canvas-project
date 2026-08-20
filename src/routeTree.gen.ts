@@ -18,6 +18,7 @@ import { Route as ItinerariesRouteImport } from './routes/itineraries'
 import { Route as OffersRouteImport } from './routes/offers'
 import { Route as CabinsIndexRouteImport } from './routes/cabins.index'
 import { Route as CabinsCabinIdRouteImport } from './routes/cabins.$cabinId'
+import { Route as DevSyncRouteImport } from './routes/dev.sync'
 import { Route as ServicesServiceIdRouteImport } from './routes/services.$serviceId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -65,6 +66,11 @@ const CabinsCabinIdRoute = CabinsCabinIdRouteImport.update({
   path: '/cabins/$cabinId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DevSyncRoute = DevSyncRouteImport.update({
+  id: '/dev/sync',
+  path: '/dev/sync',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesServiceIdRoute = ServicesServiceIdRouteImport.update({
   id: '/services/$serviceId',
   path: '/services/$serviceId',
@@ -80,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/itineraries': typeof ItinerariesRoute
   '/offers': typeof OffersRoute
   '/cabins/$cabinId': typeof CabinsCabinIdRoute
+  '/dev/sync': typeof DevSyncRoute
   '/services/$serviceId': typeof ServicesServiceIdRoute
   '/cabins/': typeof CabinsIndexRoute
 }
@@ -92,6 +99,7 @@ export interface FileRoutesByTo {
   '/itineraries': typeof ItinerariesRoute
   '/offers': typeof OffersRoute
   '/cabins/$cabinId': typeof CabinsCabinIdRoute
+  '/dev/sync': typeof DevSyncRoute
   '/services/$serviceId': typeof ServicesServiceIdRoute
   '/cabins': typeof CabinsIndexRoute
 }
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/itineraries': typeof ItinerariesRoute
   '/offers': typeof OffersRoute
   '/cabins/$cabinId': typeof CabinsCabinIdRoute
+  '/dev/sync': typeof DevSyncRoute
   '/services/$serviceId': typeof ServicesServiceIdRoute
   '/cabins/': typeof CabinsIndexRoute
 }
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/itineraries'
     | '/offers'
     | '/cabins/$cabinId'
+    | '/dev/sync'
     | '/services/$serviceId'
     | '/cabins/'
   fileRoutesByTo: FileRoutesByTo
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/itineraries'
     | '/offers'
     | '/cabins/$cabinId'
+    | '/dev/sync'
     | '/services/$serviceId'
     | '/cabins'
   id:
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/itineraries'
     | '/offers'
     | '/cabins/$cabinId'
+    | '/dev/sync'
     | '/services/$serviceId'
     | '/cabins/'
   fileRoutesById: FileRoutesById
@@ -156,6 +168,7 @@ export interface RootRouteChildren {
   ItinerariesRoute: typeof ItinerariesRoute
   OffersRoute: typeof OffersRoute
   CabinsCabinIdRoute: typeof CabinsCabinIdRoute
+  DevSyncRoute: typeof DevSyncRoute
   ServicesServiceIdRoute: typeof ServicesServiceIdRoute
   CabinsIndexRoute: typeof CabinsIndexRoute
 }
@@ -225,6 +238,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CabinsCabinIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dev/sync': {
+      id: '/dev/sync'
+      path: '/dev/sync'
+      fullPath: '/dev/sync'
+      preLoaderRoute: typeof DevSyncRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/$serviceId': {
       id: '/services/$serviceId'
       path: '/services/$serviceId'
@@ -244,6 +264,7 @@ const rootRouteChildren: RootRouteChildren = {
   ItinerariesRoute: ItinerariesRoute,
   OffersRoute: OffersRoute,
   CabinsCabinIdRoute: CabinsCabinIdRoute,
+  DevSyncRoute: DevSyncRoute,
   ServicesServiceIdRoute: ServicesServiceIdRoute,
   CabinsIndexRoute: CabinsIndexRoute,
 }
