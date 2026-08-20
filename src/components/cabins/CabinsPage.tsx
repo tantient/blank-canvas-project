@@ -1,6 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import { cn } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Link } from "@tanstack/react-router";
 
 import { Header } from "@/components/landing/Header";
@@ -307,27 +310,43 @@ function CabinCompareDialog({
   onClose: () => void;
   vi: boolean;
 }) {
-  if (!cabin) return null;
+  // Giữ lại dữ liệu phòng cuối cùng để dialog có animation đóng mượt
+  const [shown, setShown] = useState<CabinType | null>(cabin);
+  const [loading, setLoading] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
+
+  useEffect(() => {
+    if (cabin) {
+      setShown(cabin);
+      setImgLoaded(false);
+      setLoading(true);
+      const t = setTimeout(() => setLoading(false), 420);
+      return () => clearTimeout(t);
+    }
+    return undefined;
+  }, [cabin]);
+
+  if (!shown) return null;
 
   const rows = [
-    { label: vi ? "Hạng phòng" : "Cabin type", value: vi ? cabin.nameVi : cabin.nameEn },
-    ...(cabin.code ? [{ label: vi ? "Mã kỹ thuật" : "Technical code", value: cabin.code }] : []),
+    { label: vi ? "Hạng phòng" : "Cabin type", value: vi ? shown.nameVi : shown.nameEn },
+    ...(shown.code ? [{ label: vi ? "Mã kỹ thuật" : "Technical code", value: shown.code }] : []),
     {
-      label: cabin.vip ? (vi ? AREA_LABEL_VI : AREA_LABEL_EN) : vi ? "Diện tích" : "Area",
-      value: cabin.vip
+      label: shown.vip ? (vi ? AREA_LABEL_VI : AREA_LABEL_EN) : vi ? "Diện tích" : "Area",
+      value: shown.vip
         ? vi
-          ? `${cabin.area} tổng diện tích riêng`
-          : `${cabin.area} Total Private Area`
-        : cabin.area,
+          ? `${shown.area} tổng diện tích riêng`
+          : `${shown.area} Total Private Area`
+        : shown.area,
     },
-    { label: vi ? "Giường" : "Bed", value: vi ? cabin.bedVi : cabin.bedEn },
+    { label: vi ? "Giường" : "Bed", value: vi ? shown.bedVi : shown.bedEn },
     {
       label: vi ? "Sức chứa tối đa" : "Max occupancy",
-      value: vi ? `${cabin.maxGuests} khách` : `${cabin.maxGuests} guests`,
+      value: vi ? `${shown.maxGuests} khách` : `${shown.maxGuests} guests`,
     },
-    { label: vi ? "Số phòng" : "Cabins", value: vi ? `${cabin.roomCount} phòng` : `${cabin.roomCount} cabins` },
-    { label: vi ? "Tầm nhìn" : "View", value: cabin.view },
-    ...(cabin.vip
+    { label: vi ? "Số phòng" : "Cabins", value: vi ? `${shown.roomCount} phòng` : `${shown.roomCount} cabins` },
+    { label: vi ? "Tầm nhìn" : "View", value: shown.view },
+    ...(shown.vip
       ? [
           { label: vi ? "Sân riêng" : "Private terrace", value: vi ? "Có" : "Included" },
           { label: vi ? "Hồ sục ngoài trời" : "Outdoor whirlpool", value: vi ? "Có" : "Included" },
@@ -337,19 +356,24 @@ function CabinCompareDialog({
 
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
-      <DialogContent className="max-h-[90vh] max-w-md overflow-y-auto rounded-sm border-zenova-ink/10 bg-card p-0 sm:max-w-lg">
-        <div className="relative h-40 w-full sm:h-48">
+      <DialogContent className="max-h-[90vh] max-w-md overflow-y-auto rounded-sm border-zenova-ink/10 bg-card p-0 duration-300 sm:max-w-lg">
+        <div className="relative h-40 w-full overflow-hidden bg-zenova-ink/10 sm:h-48">
+          {!imgLoaded ? <Skeleton className="absolute inset-0 h-full w-full rounded-none" /> : null}
           <img
-            src={cabin.hero}
-            alt={vi ? cabin.nameVi : cabin.nameEn}
-            className="h-full w-full object-cover"
+            src={shown.hero}
+            alt={vi ? shown.nameVi : shown.nameEn}
+            onLoad={() => setImgLoaded(true)}
+            className={cn(
+              "h-full w-full object-cover transition-all duration-500",
+              imgLoaded ? "scale-100 opacity-100 blur-0" : "scale-105 opacity-0 blur-sm",
+            )}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-zenova-ink/80 via-zenova-ink/20 to-transparent" />
           <div className="absolute bottom-0 left-0 p-5">
-            {cabin.code ? (
-              <p className="mb-1 text-[10px] uppercase tracking-[0.24em] text-zenova-gold">{cabin.code}</p>
+            {shown.code ? (
+              <p className="mb-1 text-[10px] uppercase tracking-[0.24em] text-zenova-gold">{shown.code}</p>
             ) : null}
-            <p className="text-xl text-zenova-ivory">{vi ? cabin.nameVi : cabin.nameEn}</p>
+            <p className="text-xl text-zenova-ivory">{vi ? shown.nameVi : shown.nameEn}</p>
           </div>
         </div>
 
@@ -359,21 +383,42 @@ function CabinCompareDialog({
               {vi ? "So sánh chi tiết" : "Compare details"}
             </DialogTitle>
             <DialogDescription className="text-left text-xs text-muted-foreground">
-              {vi ? "Thông tin nhanh về hạng phòng này." : "Quick overview for this cabin category."}
+              {loading
+                ? vi
+                  ? "Đang tải dữ liệu so sánh…"
+                  : "Loading comparison data…"
+                : vi
+                  ? "Thông tin nhanh về hạng phòng này."
+                  : "Quick overview for this cabin category."}
             </DialogDescription>
           </DialogHeader>
 
-          <dl className="divide-y divide-zenova-ink/10 border-y border-zenova-ink/10 text-sm">
-            {rows.map((r) => (
-              <div key={r.label} className="flex items-baseline justify-between gap-4 py-3">
-                <dt className="text-[10px] uppercase tracking-[0.2em] text-zenova-stone/70">{r.label}</dt>
-                <dd className="text-right text-card-foreground">{r.value}</dd>
-              </div>
-            ))}
-          </dl>
+          {loading ? (
+            <div
+              aria-busy="true"
+              aria-live="polite"
+              className="divide-y divide-zenova-ink/10 border-y border-zenova-ink/10"
+            >
+              {Array.from({ length: 7 }).map((_, i) => (
+                <div key={i} className="flex items-center justify-between gap-4 py-3">
+                  <Skeleton className="h-3 w-24 rounded-sm" />
+                  <Skeleton className="h-3 w-28 rounded-sm" />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <dl className="animate-in fade-in slide-in-from-bottom-1 divide-y divide-zenova-ink/10 border-y border-zenova-ink/10 text-sm duration-300">
+              {rows.map((r) => (
+                <div key={r.label} className="flex items-baseline justify-between gap-4 py-3">
+                  <dt className="text-[10px] uppercase tracking-[0.2em] text-zenova-stone/70">{r.label}</dt>
+                  <dd className="text-right text-card-foreground">{r.value}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
 
-          {cabin.vip ? (
-            <p className="mt-3 text-xs leading-relaxed text-zenova-stone/70">
+          {shown.vip && !loading ? (
+            <p className="animate-in fade-in mt-3 text-xs leading-relaxed text-zenova-stone/70 duration-300">
               {vi ? AREA_NOTE_VI : AREA_NOTE_EN}
             </p>
           ) : null}
@@ -381,7 +426,8 @@ function CabinCompareDialog({
           <div className="mt-5 flex flex-wrap gap-3">
             <Button
               asChild
-              className="btn-sheen flex-1 rounded-none bg-zenova-gold text-[11px] font-semibold uppercase tracking-[0.18em] text-zenova-ink hover:bg-zenova-gold/90"
+              disabled={loading}
+              className="btn-sheen flex-1 rounded-none bg-zenova-gold text-[11px] font-semibold uppercase tracking-[0.18em] text-zenova-ink transition-opacity hover:bg-zenova-gold/90"
             >
               <a href={QUOTE_LINK} target="_blank" rel="noopener noreferrer">
                 {vi ? "Liên hệ báo giá" : "Request a quote"}
