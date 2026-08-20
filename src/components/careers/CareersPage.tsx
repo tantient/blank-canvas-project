@@ -54,51 +54,19 @@ export function CareersPage() {
           <div className="grid gap-8 md:grid-cols-2">
             {jobPositions.map((job) => (
               <Reveal key={job.id}>
-              <div className="flex h-full flex-col justify-between rounded-sm border border-border bg-card p-8 shadow-sm transition-shadow hover:shadow-md">
-                  <div>
-                    <div className="mb-4 flex flex-wrap items-center gap-3">
-                      <span className="rounded-sm bg-muted px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                        {vi ? job.departmentVi : job.departmentEn}
-                      </span>
-                      <span className="text-[12px] text-muted-foreground">
-                        {vi ? job.typeVi : job.typeEn}
-                      </span>
-                    </div>
-                    <h3 className="mb-3 text-2xl tracking-[0.02em] text-card-foreground">
-                      {vi ? job.titleVi : job.titleEn}
-                    </h3>
-                    <p className="mb-6 text-zenova-stone/85">{vi ? job.descVi : job.descEn}</p>
+                <div className="rounded-sm border border-border bg-card p-8 shadow-sm transition-shadow hover:shadow-md">
+                  <div className="mb-4 flex flex-wrap items-center gap-3">
+                    <span className="rounded-sm bg-muted px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                      {vi ? job.departmentVi : job.departmentEn}
+                    </span>
+                    <span className="text-[12px] text-muted-foreground">
+                      {vi ? job.typeVi : job.typeEn}
+                    </span>
                   </div>
-
-                  <div className="flex flex-wrap gap-3">
-                    <Button
-                      asChild
-                      className="btn-sheen rounded-none bg-zenova-gold px-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-zenova-ink hover:bg-zenova-gold/90"
-                    >
-                      <a
-                        href={buildZaloLink(ZALO_PHONE)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={vi ? `Liên hệ Zalo cho vị trí ${job.titleVi}` : `Contact via Zalo for ${job.titleEn}`}
-                      >
-                        <MessageCircle className="mr-2 h-4 w-4" />
-                        {tc.contactZalo}
-                      </a>
-                    </Button>
-                    <Button
-                      asChild
-                      variant="outline"
-                      className="rounded-none border-zenova-ink/15 px-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-card-foreground hover:bg-zenova-ink/5"
-                    >
-                      <a
-                        href={buildEmailLink(RECRUIT_EMAIL, job.titleVi, job.titleEn)}
-                        aria-label={vi ? `Gửi email ứng tuyển ${job.titleVi}` : `Send email application for ${job.titleEn}`}
-                      >
-                        <Mail className="mr-2 h-4 w-4" />
-                        {tc.sendEmail}
-                      </a>
-                    </Button>
-                  </div>
+                  <h3 className="mb-3 text-2xl tracking-[0.02em] text-card-foreground">
+                    {vi ? job.titleVi : job.titleEn}
+                  </h3>
+                  <p className="text-zenova-stone/85">{vi ? job.descVi : job.descEn}</p>
                 </div>
               </Reveal>
             ))}
@@ -125,7 +93,7 @@ export function CareersPage() {
                     variant="outline"
                     className="rounded-none border-zenova-ink/15 px-6 text-[11px] font-semibold uppercase tracking-[0.18em] text-card-foreground hover:bg-zenova-ink/5"
                   >
-                    <a href={`mailto:${RECRUIT_EMAIL}?subject=${encodeURIComponent(vi ? "Ứng tuyển Zenova" : "Application to Zenova")}`}>
+                    <a href={buildEmailLink(RECRUIT_EMAIL, lang)}>
                       <Mail className="mr-2 h-4 w-4" />
                       {tc.sendEmail}
                     </a>

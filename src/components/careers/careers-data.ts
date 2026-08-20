@@ -1,3 +1,4 @@
+import type { Lang } from "@/lib/translations";
 import heroImg from "@/assets/gallery/zenova-exterior-01.jpg.asset.json";
 
 export interface JobPosition {
@@ -12,7 +13,7 @@ export interface JobPosition {
   descEn: string;
 }
 
-export const ZALO_PHONE = "0902000000";
+export const ZALO_PHONE = "0979768969";
 export const RECRUIT_EMAIL = "hr@zenovacruise.com";
 export const CAREER_HERO = heroImg.url;
 
@@ -67,7 +68,7 @@ export function buildZaloLink(phone: string): string {
   return `https://zalo.me/${phone}`;
 }
 
-export function buildEmailLink(email: string, positionTitleVi: string, positionTitleEn: string): string {
-  const subject = `Ứng tuyển - ${positionTitleVi} / ${positionTitleEn}`;
+export function buildEmailLink(email: string, lang: Lang = "en"): string {
+  const subject = lang === "vi" ? "Ứng tuyển Zenova" : "Application to Zenova";
   return `mailto:${email}?subject=${encodeURIComponent(subject)}`;
 }
